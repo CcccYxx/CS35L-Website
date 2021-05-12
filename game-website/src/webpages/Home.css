@@ -6,3 +6,8 @@
     justify-content: center;
     align-items: center;
 }
+
+#welcome{
+    background: url("../assets/homepage-background.png");
+    background-size: cover;
+}
