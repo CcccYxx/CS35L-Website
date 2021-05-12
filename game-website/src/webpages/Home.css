@@ -1,6 +1,7 @@
 #welcome-msg{
-    color:rgb(98, 98, 204);
+    color:rgb(255, 255, 255);
     font-size: 100px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 800px;
     display: flex;
     justify-content: center;
