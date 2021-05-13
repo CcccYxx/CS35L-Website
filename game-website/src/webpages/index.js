@@ -9,6 +9,7 @@ import {
 import Home from './Home'
 import News from './News'
 import BrowseGames from './BrowseGames'
+import Signin from './Signin'
 /*
 TO DO:
 import other webpages
@@ -21,6 +22,7 @@ const Webpages = () => {
             <Route exact path="/" component = {Home} /> 
             <Route path="/news" component = {News} />
             <Route path="/browse-games" component = {BrowseGames} />
+            <Route path='/sign-in' component = {Signin} />
         </Router>
     );
 };
