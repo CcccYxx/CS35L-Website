@@ -6,8 +6,8 @@ class NavBar extends Component{
     render() {
         return(
             <nav className="NavBarItems">
-                <h1 className="app-logo">website-name</h1>
-                <ul>
+                <h1 className="app-logo"> <a href='/' className="site-name">Game-Website</a> </h1>
+                <ul className="nav-menu">
                     {MenuItems.map((item, index) => {
                         return (
                             <li key={index}>
