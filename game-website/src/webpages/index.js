@@ -10,6 +10,7 @@ import Home from './Home'
 import News from './News'
 import BrowseGames from './BrowseGames'
 import Signin from './Signin'
+import Signup from './Signup'
 /*
 TO DO:
 import other webpages
@@ -23,6 +24,7 @@ const Webpages = () => {
             <Route path="/news" component = {News} />
             <Route path="/browse-games" component = {BrowseGames} />
             <Route path='/sign-in' component = {Signin} />
+            <Route path='/sign-up' component = {Signup} />
         </Router>
     );
 };
