@@ -8,6 +8,7 @@ import {
 
 import Home from './Home'
 import News from './News'
+import BrowseGames from './BrowseGames'
 /*
 TO DO:
 import other webpages
@@ -19,6 +20,7 @@ const Webpages = () => {
         <Router>
             <Route exact path="/" component = {Home} /> 
             <Route path="/news" component = {News} />
+            <Route path="/browse-games" component = {BrowseGames} />
         </Router>
     );
 };
