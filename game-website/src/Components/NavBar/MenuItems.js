@@ -24,8 +24,8 @@ export const MenuItems = [
     },
 
     {
-        label: 'Sign up',
-        url: '/sign-up',
+        label: 'Profile',
+        url: '/profile',
         cName: 'nav-links'
     }
 ];
