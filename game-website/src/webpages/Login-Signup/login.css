@@ -1,0 +1,44 @@
+body {
+
+    /*Can change background color or replace with image*/
+    margin: 0;
+    height: 100vh; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0,0,255,0.3);
+    background-size: cover;
+}
+
+.container {
+    margin: auto;
+    width: 400px;
+    max-width: 400px;
+    background: white;
+    margin: 1rem; 
+    padding: 2rem;
+}
+
+.form--hidden{
+    display: none;
+}
+
+.formTitle {
+    text-align: center;
+}
+
+.formExtra{
+    text-align: center;
+}
+
+.formLink{
+    font-size: 12px;
+}
+.error__message{
+    text-align: center;
+}
+
+
+button {
+    font-size: 12px;
+}
