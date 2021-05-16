@@ -3,6 +3,12 @@ import { MenuItems } from "./MenuItems";
 import './NavBar.css';
 
 class NavBar extends Component{
+    constructor(props){
+        super(props)
+        this.state = {
+            isLogedIn: false //fetch data from backend to set this state accordingly
+        }
+    }
     render() {
         return(
             <nav className="NavBarItems">
@@ -11,7 +17,7 @@ class NavBar extends Component{
                     {MenuItems.map((item, index) => {
                         return (
                             <li key={index}>
-                                <a className={item.cName} href={item.url}>
+                                <a className={this.state.isLogedIn ?  (item.label === 'Sign in' ? "nav-links-noshow" : "nav-links"): item.cName} href={item.url}>
                                    {item.label}
                                 </a>
                             </li>
