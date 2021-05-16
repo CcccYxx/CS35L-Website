@@ -11,6 +11,7 @@ import News from './News'
 import BrowseGames from './BrowseGames'
 import Signin from './Signin'
 import Signup from './Signup'
+import Profile from './Profile'
 /*
 TO DO:
 import other webpages
@@ -25,6 +26,7 @@ const Webpages = () => {
             <Route path="/browse-games" component = {BrowseGames} />
             <Route path='/sign-in' component = {Signin} />
             <Route path='/sign-up' component = {Signup} />
+            <Route path='/profile' component = {Profile}/>
         </Router>
     );
 };
