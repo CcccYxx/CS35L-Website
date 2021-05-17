@@ -1,0 +1,11 @@
+#Header{
+    display: list-item;
+    justify-content: left;
+    margin: 18px 0px;
+}
+
+#Interests{
+    display: list-item;
+    justify-content: right;
+    margin: 18px 0px;
+}

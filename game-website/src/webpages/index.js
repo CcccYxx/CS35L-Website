@@ -17,6 +17,7 @@ TO DO:
 import other webpages
 */
 
+
 const Webpages = () => {
     return(
         //To Do: Add path to other pages 
@@ -26,7 +27,7 @@ const Webpages = () => {
             <Route path="/browse-games" component = {BrowseGames} />
             <Route path='/sign-in' component = {Signin} />
             <Route path='/sign-up' component = {Signup} />
-            <Route path='/profile' component = {Profile}/>
+            <Route path='/profile' component = {Profile} />
         </Router>
     );
 };
