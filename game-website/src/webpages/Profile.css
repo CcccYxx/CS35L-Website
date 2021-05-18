@@ -1,30 +1,41 @@
-
-.top{
-    background-color: rgba(0, 255, 221, 0.37);
-    margin: 10px 20px;
-    align-items: left; 
-    border: 2px solid rgb(0, 0, 0);
-    display: flex;
-    flex-direction: column;
-}
-
 .cols{
+    font-family: 'Mulish', sans-serif;
     display: flex;
     flex-direction: row;
-    font-family: 'Times New Roman', Times, serif;
-    justify-content: center;
+    font-family: 'Comic Sans';
+    justify-content: space-between;
+    color: grey;
+}
+
+.top{
+    font-family: 'Mulish', sans-serif;
+    display: flex;
+    flex-direction: column;
+    border-radius: 25px;
+    border: 2px solid #73AD21;
+}
+
+.Profile{
+    border-radius: 25px;
+    border: 2px solid #73AD21;
 }
 
 .blogs{
-    margin: 10px 20px;
+    font-family: 'Mulish', sans-serif;
     column-width: 250px;
-
-    background-color: rgba(0, 255, 221, 0.37);
-    border: 2px solid rgb(0, 0, 0);
+    border-radius: 25px;
+    border: 2px solid #73AD21;
 }
 .chats{
+    font-family: 'Mulish', sans-serif;
     column-width: 250px;
-    margin: 10px 20px;
-    background-color: rgba(0, 255, 221, 0.37);
-    border: 2px solid rgb(0, 0, 0);
+    border-radius: 25px;
+    border: 2px solid #73AD21;
+}
+
+.Friends{
+    font-family: 'Mulish', sans-serif;
+    column-width: 250px;
+    border-radius: 25px;
+    border: 2px solid #73AD21;
 }

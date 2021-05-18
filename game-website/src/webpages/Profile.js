@@ -26,10 +26,20 @@ class Profile extends Component{
                         border= '5px solid #555'
                         alt='did not load'
                         src={this.state.image}
-                        style={{width:"200px", height:"200px", borderRadius:"80px"}}
+                        style={{width:"200px", height:"200px", borderRadius:"60px"}}
                     />
-                    <div className='usersummary'> 
-                        <h1> Profile</h1>
+                    <div>
+                        <form>
+                            <label>
+                                change url: 
+                                <input type='text' value = {this.state.image} onChange={this.handleChange}/>
+                            </label>
+                        </form>
+                    </div>
+                </div>
+                <div className='Profile'>
+                    <h1> Profile</h1>
+                    <div> 
                         <ul>
                             <li> Name - {this.state.name} </li>
                             <li> UserId - {this.state.id} </li>
@@ -37,8 +47,8 @@ class Profile extends Component{
                             <li> Friends - {this.state.friends} </li>
                         </ul>
                     </div>
-                    <div className='Games'> 
-                        <h1> Top Games</h1>
+                    <h1> Top Games</h1>
+                    <div> 
                         <ul>
                             <li> {this.state.Games[0]}</li>
                             <li> {this.state.Games[1]}</li>
@@ -46,20 +56,17 @@ class Profile extends Component{
                             <li> {this.state.Games[3]}</li>
                         </ul>
                     </div>
-                    <div>
-                        <form>
-                            <label>
-                                change url:
-                                <input type='text' value = {this.state.image} onChange={this.handleChange}/>
-                            </label>
-                        </form>
-                    </div>
                 </div>
                 <div className='blogs'>
-                    <h1> Blogs</h1>
+                    <h1> Comments</h1>
                 </div>
-                <div className='chats'>
-                    <h1> Friends</h1>
+                <div className='chats' >
+                    <h1> Messaging </h1>
+                    <h4> Inbox </h4>
+                    <h4> Send Message </h4>
+                </div>
+                <div className='Friends'>
+                    <h1> Add Friends</h1>
                 </div>
             </div>
         );  
