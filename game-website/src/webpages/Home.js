@@ -1,6 +1,6 @@
 import React from 'react';
 import './Home.css';
-
+import Button from '../Components/Button'
 const Home = () =>{
     return(
         <div id='welcome'>
