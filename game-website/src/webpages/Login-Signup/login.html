@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
     <title> Login / Sign Up Form</title>
     <link rel="stylesheet" href="./login.css"> 
     <script src="./login.js"></script>
@@ -8,12 +9,11 @@
 <body>
     <div class="container">
 
-        <form class="form" id="login">
+        <form class="form form--hidden" id="login">
             <h1 class="formTitle">Login</h1>
-            <!-- <div class="error__message">Incorrect Username/Password</div> -->
             <div class="formInput">
-                <input type="email" class="form__input" autofocus placeholder="Email">
-                <input type="text" class="form__input" autofocus placeholder="Password">
+                <input type="email" class="formInput" autofocus placeholder="Email">
+                <input type="text" class="formInput" autofocus placeholder="Password">
             </div>
             <button class="formContinue" type="submit">Continue</button>
             <p class="formExtra"> 
@@ -21,12 +21,13 @@
             </p>
         </form>
 
-        <form class="form form--hidden" id="createAccount">
+        <form class="form" id="createAccount">
             <h1 class="formTitle">Create Account</h1>
 
             <div class="formInput">
-                <input type="email" class="form__input" autofocus placeholder="Email Address">
-                <input type="text" class="form__input" autofocus placeholder="Password">
+                <input type="email" class="formInput" autofocus placeholder="Email Address">
+                <input type="text" class="formInput" autofocus placeholder="Password">
+                <input type="text" class="formInput" autofocus placeholder="Confirm Password">
             </div>
             <button class="formContinue" type="submit">Continue</button>
             <p class="formExtra"> 

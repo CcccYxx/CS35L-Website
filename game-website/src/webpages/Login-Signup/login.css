@@ -1,12 +1,15 @@
 body {
-
+    --color-primary: #009579;
+    --color-primary-dark: #007f67;
+    --color-secondary: #252c6a;
+    --border-radius: 4px; 
     /*Can change background color or replace with image*/
     margin: 0;
     height: 100vh; 
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgba(0,0,255,0.3);
+    background-color: var(--color-primary);
     background-size: cover;
 }
 
@@ -16,9 +19,18 @@ body {
     max-width: 400px;
     background: white;
     margin: 1rem; 
-    padding: 2rem;
+    padding: 1rem;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
+    border-radius: var(--border-radius);
 }
+.formInput{
+    display: block;
+    width: 100%;
+    padding: 0.75rem; 
+    box-sizing: border-box;
+    border-radius: var(--border-radius);
 
+}
 .form--hidden{
     display: none;
 }
@@ -34,11 +46,13 @@ body {
 .formLink{
     font-size: 12px;
 }
-.error__message{
-    text-align: center;
-}
 
 
-button {
-    font-size: 12px;
+.formContinue{
+    font-size: 1.1rem;
+    width: 100%;
+    padding: 0.5rem; 
+    color: white; 
+    background: var(--color-primary-dark);
+    border-radius: var(--border-radius);
 }
