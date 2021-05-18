@@ -1,11 +1,30 @@
-#Header{
-    display: list-item;
-    justify-content: left;
-    margin: 18px 0px;
+
+.top{
+    background-color: rgba(0, 255, 221, 0.37);
+    margin: 10px 20px;
+    align-items: left; 
+    border: 2px solid rgb(0, 0, 0);
+    display: flex;
+    flex-direction: column;
 }
 
-#Interests{
-    display: list-item;
-    justify-content: right;
-    margin: 18px 0px;
+.cols{
+    display: flex;
+    flex-direction: row;
+    font-family: 'Times New Roman', Times, serif;
+    justify-content: center;
+}
+
+.blogs{
+    margin: 10px 20px;
+    column-width: 250px;
+
+    background-color: rgba(0, 255, 221, 0.37);
+    border: 2px solid rgb(0, 0, 0);
+}
+.chats{
+    column-width: 250px;
+    margin: 10px 20px;
+    background-color: rgba(0, 255, 221, 0.37);
+    border: 2px solid rgb(0, 0, 0);
 }
