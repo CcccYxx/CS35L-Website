@@ -1,3 +1,5 @@
+import React from 'react'
+const Login = () =>{
 document.addEventListener("DOMContentLoaded", () => {
     const loginForm = document.querySelector("#login");
     const signupForm = document.querySelector("#signup");
@@ -30,3 +32,5 @@ document.addEventListener("DOMContentLoaded", () => {
     })
 
 }); 
+};
+export default Login;

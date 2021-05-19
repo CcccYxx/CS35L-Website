@@ -23,7 +23,7 @@ const Webpages = () => {
             <Route exact path="/" component = {Home} /> 
             <Route path="/news" component = {News} />
             <Route path="/browse-games" component = {BrowseGames} />
-            <Route path='./Login-Signup/login' component = {login} />
+            <Route path='/Login-Signup' component = {login} />
             <Route path='/profile' component = {Profile}/>
         </Router>
     );
