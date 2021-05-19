@@ -8,26 +8,26 @@
 </head>
 <body>
     <div class="container">
-
-        <form class="form form--hidden" id="login">
+        <!--Login form-->
+        <form class="form" id="login">
             <h1 class="formTitle">Login</h1>
             <div class="formInput">
-                <input type="email" class="formInput" autofocus placeholder="Email">
-                <input type="text" class="formInput" autofocus placeholder="Password">
+                <input type="email" class="formInput" autofocus placeholder="Email" required>
+                <input type="password" class="formInput" autofocus placeholder="Password" required>
             </div>
             <button class="formContinue" type="submit">Continue</button>
             <p class="formExtra"> 
                 <a class="formLink"  href="./" id=linkCreateAccount>Don't have an account? Create account</a>
             </p>
         </form>
-
-        <form class="form" id="createAccount">
+        <!--Signup form-->
+        <form class="form formHidden" id="signup">
             <h1 class="formTitle">Create Account</h1>
 
             <div class="formInput">
-                <input type="email" class="formInput" autofocus placeholder="Email Address">
-                <input type="text" class="formInput" autofocus placeholder="Password">
-                <input type="text" class="formInput" autofocus placeholder="Confirm Password">
+                <input type="email" class="formInput" autofocus placeholder="Email" required>
+                <input type="password" class="formInput" autofocus placeholder="Password" required>
+                <input type="password" class="formInput" autofocus placeholder="Confirm Password" required>
             </div>
             <button class="formContinue" type="submit">Continue</button>
             <p class="formExtra"> 
