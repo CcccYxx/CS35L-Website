@@ -6,7 +6,7 @@ body {
     /*Can change background color or replace with image*/
     margin: 0;
     height: 100vh; 
-    display: flex;
+    display: cover;
     align-items: center;
     justify-content: center;
     background-color: var(--color-primary);
