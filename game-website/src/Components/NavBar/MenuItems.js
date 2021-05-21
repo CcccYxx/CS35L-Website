@@ -26,6 +26,6 @@ export const MenuItems = [
     {
         label: 'Profile',
         url: '/profile',
-        cName: 'nav-links-noshow'
+        cName: 'nav-links'
     }
 ];
