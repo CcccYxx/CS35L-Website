@@ -10,29 +10,32 @@ function newsArticle(title, author, publisher, link, date) {
     this.link = link;
 }
 
-var myItems = [];
-var key;
-var item;
-for( key in newsJson){
-    var pushArt = new newsArticle(newsJson[key][0], newsJson[key][1], newsJson[key][2], newsJson[key][3], newsJson[key][4]);
-    myItems.push(pushArt);
+function parseJson(){
+    var myItems = [];
+    var key;
+    var item;
+    for( key in newsJson){
+        var pushArt = new newsArticle(newsJson[key][0], newsJson[key][1], newsJson[key][2], newsJson[key][3], newsJson[key][4]);
+        myItems.push(pushArt);
+    }
+
+    var toAdd = document.createDocumentFragment();
+    for(var item in myItems){
+        var newDiv = document.createElement('div');
+        newDiv.id = 'art'+item;
+        newDiv.className = 'articles';
+        toAdd.appendChild(newDiv);
+    }
+    document.getElementById("newsList").appendChild(toAdd);
 }
-
-
-for(var item in myItems){
-    var div = document.createElement('div');
-    document.body.appendChild(div);
-}
-
-
 
 const News = () =>{
     return(
         <div>
             <h1>News</h1>
-            
-           <p>{myItems[0].title} {myItems[0].author} {myItems[0].publisher}</p>
-
+            <div id = "newsList">
+                {parseJson}
+            </div>
         </div>
     );  
 };
