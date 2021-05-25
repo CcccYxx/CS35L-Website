@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
 import './Profile.css';
 
+fetch('http://localhost:8080/user')
+.then(result => {
+    return result.json();
+})
+.then(data => {
+    console.log(data);
+})
 class Profile extends Component{
     constructor(props) {
         super(props);
