@@ -18,6 +18,12 @@ export const MenuItems = [
     },
 
     {
+        label: 'Blog',
+        url: '/blog',
+        cName:'nav-links'
+    },
+
+    {
         label: 'Sign in',
         url: '/Login-Signup',
         cName: 'nav-links'
@@ -27,11 +33,5 @@ export const MenuItems = [
         label: 'Profile',
         url: '/profile',
         cName: 'nav-links-noshow'
-    },
-
-    {
-        label: 'Blog',
-        url: '/blog',
-        cName:'nav-links'
     }
 ];
