@@ -19,13 +19,19 @@ export const MenuItems = [
 
     {
         label: 'Sign in',
-        url: '/sign-in',
+        url: '/Login-Signup',
         cName: 'nav-links'
     },
 
     {
         label: 'Profile',
         url: '/profile',
-        cName: 'nav-links-noshow'
+        cName: 'nav-links'
+    },
+
+    {
+        label: 'Blog',
+        url: '/blog',
+        cName:'nav-links'
     }
 ];

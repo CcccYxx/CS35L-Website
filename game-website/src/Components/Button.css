@@ -1,0 +1,18 @@
+.button{
+    font-family: 'Mulish', sans-serif;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 16px;
+    cursor: pointer;
+    font-size: 24px;
+    color: #fff;
+    margin: 10px;
+}
+
+.button:focus{
+    outline: none;
+}
+
+.button:active{
+    transform: scale(0.96);
+}
