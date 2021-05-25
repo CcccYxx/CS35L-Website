@@ -1,11 +1,27 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import './login.css';
 
-const Login = () =>{ 
+class Login extends Component{ 
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            isLoginVisible: true,
+        };
+    }
+
+    toggleLogin = () => {
+        this.setState(prevState => ({
+            isLoginVisible: !prevState.isLoginVisible,
+          }));
+    };
+
+    render(){
     return(
         <div class="container">
         {/*Login form */}
-        <form class="form" id="login">
+        <form className={`form${this.state.isLoginVisible ? "" : "Hidden"}`} id="login">
             <h1 class="formTitle">Login</h1>
             <div class="formInput">
                 <input type="email" class="formInput" autofocus placeholder="Email" required />
@@ -13,11 +29,11 @@ const Login = () =>{
             </div>
             <button class="formContinue" type="submit">Continue</button>
             <p class="formExtra"> 
-                <a class="formLink"  href="./" id="linkCreateAccount">Don't have an account? Create account</a>
+                <Link to='/Login-Signup/login.js' onClick={this.toggleLogin} class="formLink" id="linkCreateAccount">Don't have an account? Create account</Link>
             </p>
         </form>
         {/*Signup form*/}
-        <form class="form formHidden" id="signup">
+        <form className={`form${this.state.isLoginVisible ? "Hidden" : ""}`}id="signup">
             <h1 class="formTitle">Create Account</h1>
             <div class="formInput">
                 <input type="email" class="formInput" autofocus placeholder="Email" required />
@@ -26,43 +42,11 @@ const Login = () =>{
             </div>
             <button class="formContinue" type="submit">Continue</button>
             <p class="formExtra"> 
-                <a class="formLink"  href="./" id="linkLogin">Already have an account? Login</a>
+                <a href='#login' class="formLink"  onClick={this.toggleLogin} id="linkLogin">Already have an account? Login</a>
             </p>
         </form>
         </div>
     );
+    }
 };
 export default Login;
-/* // document.addEventListener("DOMContentLoaded", () => {
-//     const loginForm = document.querySelector("#login");
-//     const signupForm = document.querySelector("#signup");
-
-//     /*Hide Signup form when login link clicked */
-//     document.querySelector("#linkCreateAccount").addEventListener("click", e => {
-//         e.preventDefault();
-//         loginForm.classList.add("formHidden");
-//         signupForm.classList.remove("formHidden");ls
-//     });
-
-//    //Hide login form when signup link clicked 
-//     document.querySelector("#linkLogin").addEventListener("click", e => {
-//         e.preventDefault();
-//         loginForm.classList.remove("formHidden");
-//         signupForm.classList.add("formHidden");
-//     });
-
-//     loginForm.addEventListener("submit", e => {
-//         e.preventDefault();
-
-//         //Fetch login here 
-
-//     });
-
-//     signupForm.addEventListener("submit", e => {
-//         e.preventDefault();
-
-//         //Push login here
-//     })
-
-// }); 
-// }; */}
