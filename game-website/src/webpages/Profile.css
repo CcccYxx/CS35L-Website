@@ -1,0 +1,39 @@
+body{
+    background-color: white;
+
+}
+.cols{
+    display: flex;
+    flex-direction: row;
+    font-family: 'Comic Sans';
+    margin-top: 20px;
+    justify-content: space-around;
+    color: rgb(85, 85, 85);
+}
+
+.top{
+    border-radius: 15px;
+    border: 2px solid #000000;
+}
+
+.Profile{
+    border-radius: 15px;
+    border: 2px solid #000000;
+}
+
+.blogs{
+    column-width: 250px;
+    border-radius: 15px;
+    border: 2px solid #000000;
+}
+.chats{
+    column-width: 250px;
+    border-radius: 15px;
+    border: 2px solid #000000;
+}
+
+.Friends{
+    column-width: 250px;
+    border-radius: 15px;
+    border: 2px solid #000000;
+}
