@@ -1,6 +1,6 @@
 body {
     --color-primary: #009579;
-    --color-primary-dark: #007f67;
+    --color-primary-dark: #768efa;
     --color-secondary: #252c6a;
     --border-radius: 4px; 
     /*Can change background color or replace with image*/
@@ -14,6 +14,10 @@ body {
 }
 
 .container {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     margin: auto;
     width: 400px;
     max-width: 400px;
@@ -24,18 +28,28 @@ body {
     border-radius: var(--border-radius);
 }
 .formInput{
+    font-size: 1.0rem;
     display: block;
     width: 100%;
     padding: 0.75rem; 
     box-sizing: border-box;
     border-radius: var(--border-radius);
+    border-color: rgb(236, 236, 236);
+    margin-bottom: 10px;
 
 }
+
+.formInput:focus{
+    background-color: rgb(232, 235, 253);
+    transition: all ease-in 0.2s;
+}
+
 .formHidden{
     display: none;
 }
 
 .formTitle {
+    color: rgb(73, 73, 73);
     text-align: center;
 }
 
@@ -49,10 +63,25 @@ body {
 
 
 .formContinue{
-    font-size: 1.1rem;
-    width: 100%;
+    border: none;
+    font-size: 1.2rem;
+    width: 67%;
+    position: relative;
+    transform: translate(22%);
     padding: 0.5rem; 
     color: white; 
     background: var(--color-primary-dark);
     border-radius: var(--border-radius);
+}
+
+.formContinue:hover{
+    background: #5d5fff;
+}
+
+.formContinue:active{
+    transform: translate(22%) scale(0.99);
+}
+
+.form{
+    font-family: 'Mulish', sans-serif;
 }
