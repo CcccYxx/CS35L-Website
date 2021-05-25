@@ -1,20 +1,15 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import './Profile.css';
 
-fetch('http://localhost:8080/user')
-.then(result => {
-    return result.json();
-})
-.then(data => {
-    console.log(data);
-})
+
+
 class Profile extends Component{
     constructor(props) {
         super(props);
         this.state = {
-            name:'John Smith',
+            Name:'John Smith',
             email:'johnsmith@email.com',
-            password:'password',
             id:'johnsmith1234',
             friends:'6',
             Games: ['fortnite ', 'chess ', 'strategic games', 'multi-player'],
@@ -24,6 +19,18 @@ class Profile extends Component{
     handleChange = event => {
         this.setState({ image: event.target.value });
       };
+       
+    handleClick = event => {
+        event.preventDefault();
+        const newProfile = {
+            id: this.state.id,
+            image: this.state.image,
+            Games: this.state.Games,
+            Name: this.state.Name
+        }
+        axios.post('/profile', newProfile);
+
+    }
 
     render() {
         return(
@@ -43,11 +50,12 @@ class Profile extends Component{
                             </label>
                         </form>
                     </div>
+                    <button onClick={this.handleClick}>add info to backennd</button>
                 </div>
                 <div className='Profile'>
                     <h1> Info</h1>
                     <ul>
-                        <li> Name - {this.state.name} </li>
+                        <li> Name - {this.state.Name} </li>
                         <li> UserId - {this.state.id} </li>
                         <li> Email - {this.state.email} </li>
                         <li> Friends - {this.state.friends} </li>
