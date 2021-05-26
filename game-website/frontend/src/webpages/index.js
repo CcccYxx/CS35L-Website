@@ -11,6 +11,7 @@ import News from './News'
 import BrowseGames from './BrowseGames'
 import login from './Login-Signup/login'
 import Profile from './Profile'
+import Forum from './Forum'
 
 /*
 TO DO:
@@ -27,6 +28,7 @@ const Webpages = () => {
             <Route path="/browse-games" component = {BrowseGames} />
             <Route path='/Login-Signup' component = {login} />
             <Route path='/profile' component = {Profile}/>
+            <Route path='/forum' component = {Forum} />
         </Router>
     );
 };
