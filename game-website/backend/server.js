@@ -31,8 +31,8 @@ app.post('/api/register', function(req, res) {
 });
 
 app.post('/profile', (request, response) => {
-    const {id, image, Games, Name} = request.body;
-    const profile = new Profile({id, image, Games});
+    const {id, image, Games, Email, Name} = request.body;
+    const profile = new Profile({id, image, Games, Email, Name});
     profile.save(function(err) {
         if(err) {
             console.log(err);

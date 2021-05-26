@@ -39,7 +39,8 @@ class Profile extends Component{
             id: this.state.id,
             image: this.state.image,
             Games: this.state.Games,
-            Name: this.state.Name
+            Name: this.state.Name,
+            Email: this.state.email
         }
         axios.post('/profile', newProfile);
 
@@ -82,7 +83,7 @@ class Profile extends Component{
                         : ( 
                         <form>
                             <ul>
-                                <li> Name - <input type='text' value = {this.state.image} onChange={this.nameChange}/> </li>
+                                <li> Name - <input type='text' value = {this.state.Name} onChange={this.nameChange}/> </li>
                                 <li> Id - <input type='text' value = {this.state.id} onChange={this.idChange}/> </li>
                                 <li> Email - <input type='text' value = {this.state.email} onChange={this.emailChange}/> </li>
                             </ul>
