@@ -3,6 +3,7 @@
     background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
     font-family: Mulish, sans-serif;
     height: 55px;
+    width: 100vw;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -18,7 +19,7 @@
 
 .nav-menu{
     display: grid;
-    grid-template-columns: repeat(5, auto);
+    grid-template-columns: repeat(6, auto);
     grid-gap: 10px;
     list-style: none;
     text-align: center;

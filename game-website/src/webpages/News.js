@@ -1,10 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './News.css';
-
-
+import {Link} from 'react-router-dom'
 const newsJson = require("../assets/news.json");
-function newsArticle(title, author, publisher, link, date) {
+function newsArticle(title, author, publisher, date, link) {
     this.title = title;
     this.author = author;
     this.publisher = publisher;
@@ -12,51 +11,41 @@ function newsArticle(title, author, publisher, link, date) {
     this.link = link;
 }
 
-class newsPage extends React.Component{
-    constructor(){
-        super();
-            this.state ={
-                content: "Display"
-            }
-    }
-
-
+var myItems = [];
+var key;
+for( key in newsJson){
+    var pushArt = new newsArticle(newsJson[key][0], newsJson[key][1], newsJson[key][2], newsJson[key][3], newsJson[key][4]);
+    myItems.push(pushArt);
 }
 
-function parseJson(){
-    var myItems = [];
-    var key;
-    for(key in newsJson){
-        var pushArt = new newsArticle(newsJson[key][0], newsJson[key][1], newsJson[key][2], newsJson[key][3], newsJson[key][4]);
-        myItems.push(pushArt);
+class News extends React.Component{
+    constructor(props){
+        super(props);
+        this.newsList = React.createRef();
     }
 
-    var newsDiv = document.createElement('div');
-    newsDiv.id = "newsList";
-    document.body.appendChild(newsDiv);
-    var toAdd = document.createDocumentFragment();
-    
-    for(var i = 0; i < myItems.length;  i++){
-        
-        var newDiv = document.createElement('div');
-        newDiv.id = 'art'+i;
-        newDiv.className = 'articles';
-        newDiv.innerHTML = myItems[i].title;
-        toAdd.appendChild(newDiv);
-    }
-    alert("ONCE");
-    newsDiv.appendChild(toAdd);
-}
+    render(){
+        const news = myItems.map((items) => {
+            return( //return list for now, can change those if needed 
+                <li key={items.title}>
+                    <h2 className="title"><Link to={{pathname:items.link}} target="_blank">{items.title}</Link></h2>
+                    <p className="author">Author: {items.author}</p>
+                    <p className="publisher">Publisher: {items.publisher}</p>
+                    <p className="Date">Date: {items.date}</p>
+                    <p className='link'>Source: {items.link}</p>
+                </li>
+            )
+        });
 
-const News = () =>{
-    return(
-        <div>
-            <h1>News</h1>
-                <newsPage>
-                    {parseJson()}
-                </newsPage>
+        return(
+        <div className="newsPage">
+            <h1 className='header'>News</h1>
+            <ul className="newsList">
+                {news}
+            </ul>
         </div>
-    );  
+        )
+    }
 };
 
 export default News;

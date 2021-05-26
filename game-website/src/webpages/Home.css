@@ -11,4 +11,7 @@
 #welcome{
     background: url("../assets/homepage-background.png");
     background-size: cover;
+    background-repeat: no-repeat;
+    width: 100vw;
+    height: 100vh;
 }
