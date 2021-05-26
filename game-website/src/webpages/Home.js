@@ -1,12 +1,32 @@
 import React from 'react';
 import './Home.css';
-import Button from '../Components/Button'
-const Home = () =>{
-    return(
-        <div id='welcome'>
-            <b id='welcome-msg'> Welcome to Homepage </b>
-        </div>
-    );  
+
+
+class Home extends React.Component{
+    constructor(props){
+        super(props);
+        this.state={
+            searchString: null,
+        };
+    }
+
+    handleSearchStringChange(event){
+        if(event.charCode === 13){
+            this.setState({searchString: event.target.value});
+        }
+    }
+
+    render(){
+        return(
+            <div className='welcome'>
+                <div className='welcome-msg'> Welcome to Game-Website </div>
+                <div className="searchbar_container">
+                    <input type="text" className="searchbar" placeholder="Search for posts or people..." maxLength="40"
+                     onKeyPress={this.handleSearchStringChange.bind(this)}/>
+                </div>
+            </div>
+        );  
+    }
 };
 
 export default Home;
