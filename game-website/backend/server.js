@@ -4,9 +4,13 @@ const Profile = require("./profile");
 const User = require("./user"); 
 const app = express();
 const uri = "mongodb+srv://Gamewebsite:WqvWDOvAEHUPfevX@cluster0.h0txi.mongodb.net/UserInformation?retryWrites=true&w=majority";
+import postRoutes from './posts';
+
 //Middleware
 app.use(express.urlencoded({ extended: false })); //parse URL-encoded bodies
 app.use(express.json()); //parse JSON bodies
+
+app.use('/posts', postRoutes);
 
 mongoose.connect(uri, 
     { useUnifiedTopology: true, useNewUrlParser: true},
