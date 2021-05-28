@@ -45,6 +45,21 @@ class Profile extends Component{
         axios.post('/profile', newProfile);
 
     }
+    
+    //Hide if user not logged in
+    // componentDidMount() {
+    //     fetch('/api/profile')
+    //     .then(res => res.text())
+    //     .then(res => this.setState({
+    //         editing: true,
+    //         Name:"",
+    //         email:"",
+    //         id:"",
+    //         friends:"",
+    //         Games: "",
+    //         image: ""
+    //     }))
+    // }
 
     render() {
         return(

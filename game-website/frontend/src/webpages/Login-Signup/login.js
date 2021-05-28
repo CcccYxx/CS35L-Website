@@ -21,13 +21,31 @@ class Login extends Component{
 
     onSubmitLogin = (event) => {
         event.preventDefault();
-        fetch('http://localhost:8080/api/register', {
+        fetch('/api/authenticate', {
             method: 'POST', 
             body: JSON.stringify(this.state),
             headers: {
                 'Content-Type': 'application/json'
             }
         })
+        .then(res => {
+            if (res.status === 200) {
+                this.props.history.push('/');
+                alert('succesfully logged in');
+            } else {
+                const error = new Error(res.error);
+                throw error;
+            }
+        })
+        .catch(err => {
+            console.error(err);
+            alert('Error logging in please try again');
+        });
+    }
+
+    onSubmitRegister = (event) => {
+        event.preventDefault();
+        
     }
 
     onInputChange = (event) =>{
@@ -42,31 +60,31 @@ class Login extends Component{
         <div class="container">
         {/*Login form */}
         <form className={`form${this.state.isLoginVisible ? "" : "Hidden"}`} id="login" onSubmit={this.onSubmitLogin}>
-            <h1 class="formTitle">Login</h1>
-            <div class="formInput">
-                <input type="email" class="formInput" autofocus placeholder="Email" onChange={this.onInputChange} />
-                <input type="password" class="formInput" autofocus placeholder="Password" onChange={this.onInputChange} required /> 
+            <h1 className="formTitle">Login</h1>
+            <div className="formInput">
+                <input type="email" className="formInput" placeholder="Email" onChange={this.onInputChange} value={this.state.email} required/>
+                <input type="password" className="formInput" placeholder="Password" onChange={this.onInputChange} value={this.state.password} required /> 
             </div>
-            <button class="formContinue" type="submit">Continue</button>
-            <p class="formExtra"> 
+            <button className="formContinue" type="submit">Continue</button>
+            <p className="formExtra"> 
                 <Link to='/Login-Signup/login.js' onClick={this.toggleLogin} class="formLink" id="linkCreateAccount">Don't have an account? Create account</Link>
             </p>
         </form>
         {/*Signup form*/}
-        <form className={`form${this.state.isLoginVisible ? "Hidden" : ""}`}id="signup">
-            <h1 class="formTitle">Create Account</h1>
-            <div class="formInput">
-                <input type="email" class="formInput" autofocus placeholder="Email" onChange={this.onInputChange} required />
-                <input type="password" class="formInput" autofocus placeholder="Password" required />
-                <input type="password" class="formInput" autofocus placeholder="Confirm Password" required />
+        <form className={`form${this.state.isLoginVisible ? "Hidden" : ""}`}id="signup" >
+            <h1 className="formTitle">Create Account</h1>
+            <div className="formInput">
+                <input type="email" className="formInput" placeholder="Email" required />
+                <input type="password" className="formInput" placeholder="Password" required />
             </div>
-            <button class="formContinue" type="submit">Continue</button>
-            <p class="formExtra"> 
-                <a href='#login' class="formLink"  onClick={this.toggleLogin} id="linkLogin">Already have an account? Login</a>
+            <button className="formContinue" type="submit">Continue</button>
+            <p className="formExtra"> 
+                <Link to='/Login-Signup/login.js' className="formLink"  onClick={this.toggleLogin} id="linkLogin">Already have an account? Login</Link>
             </p>
         </form>
         </div>
     );
     }
 };
+
 export default Login;

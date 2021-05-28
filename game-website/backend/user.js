@@ -9,6 +9,7 @@ const UserSchema = new mongoose.Schema({
 
 //Salt and Hash Passwords
 UserSchema.pre('save', function(next){
+    //Check if document is new or a new password has been set
     if(this.isNew|| this.isModified('password')) {
         const document = this;
         bcrypt.hash(document.password, saltRounds, function(err, hashedPassword){
