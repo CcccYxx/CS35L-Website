@@ -8,7 +8,7 @@
    flex: 70%;
 }
 
-.form{
+#form{
     flex: 30%;
     position: absolute;
     margin-left: 70%;

@@ -3,7 +3,9 @@ import './Form.css';
 
 const Form = () => {
     return(
-        <h1>FORM</h1>
+        <div className="formContainer">
+            <h2>Make a Post</h2>
+        </div>
     );
 }
 

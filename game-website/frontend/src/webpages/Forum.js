@@ -12,7 +12,7 @@ class Forum extends React.Component{
                <div className="posts">
                    <Post title="Hello" message = "I am a weeb, so I like anime games and stuff" tags={["action", "anime"]} creator="CCCyx" date="2021/5/28" likeCount={999}/>
                 </div>
-                <div className="form">
+                <div id="form">
                     <Form/>
                 </div>
             </div>
