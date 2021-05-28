@@ -1,26 +1,24 @@
 import React from 'react';
-import { Container } from '@material-ui/core';
-import { Grow, Grid } from '@material-ui/core';
-import Posts from '../Components/Uploads/Posts.js'
-import Form from '../Components/Form/form'
+import Post from '../Components/Post/Post'
+import Form from '../Components/Form/Form'
 
-const Forum = () => {
-    return(
-        <Container> 
-           <Grow in> 
-                <Container>
-                    <Grid container justify= "space-between" alignItems="stretch" spacing={3}>
-                        <Grid item xs={12} sm={7}>
-                            <Posts />
-                         </Grid>   
-                         <Grid item xs={12} sm={4}>
-                             <Form />
-                         </Grid>
-                    </Grid>
-                </Container>
-           </Grow>
-        </Container>
-    );
-};
+class Forum extends React.Component{
+    render(){
+        return(
+            <div className="forumPageContainer">
+                <table className="PostFormContainer">
+                    <tr>
+                        <td className="posts">
+                            <Post/>
+                        </td>
+                        <td className="form">
+                            <Form/>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        )
+    }
+}
 
 export default Forum;

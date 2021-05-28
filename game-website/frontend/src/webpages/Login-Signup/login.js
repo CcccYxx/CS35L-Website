@@ -8,6 +8,8 @@ class Login extends Component{
         super(props);
         this.state = {
             isLoginVisible: true,
+            email:'',
+            password:'',
         };
     }
 
@@ -17,15 +19,33 @@ class Login extends Component{
           }));
     };
 
+    onSubmitLogin = (event) => {
+        event.preventDefault();
+        fetch('http://localhost:8080/api/register', {
+            method: 'POST', 
+            body: JSON.stringify(this.state),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+    }
+
+    onInputChange = (event) =>{
+        const { value, name } = event.target;
+        this.setState({
+            [name]: value
+        });
+    }
+
     render(){
     return(
         <div class="container">
         {/*Login form */}
-        <form className={`form${this.state.isLoginVisible ? "" : "Hidden"}`} id="login">
+        <form className={`form${this.state.isLoginVisible ? "" : "Hidden"}`} id="login" onSubmit={this.onSubmitLogin}>
             <h1 class="formTitle">Login</h1>
             <div class="formInput">
-                <input type="email" class="formInput" autofocus placeholder="Email" required />
-                <input type="password" class="formInput" autofocus placeholder="Password" required /> 
+                <input type="email" class="formInput" autofocus placeholder="Email" onChange={this.onInputChange} />
+                <input type="password" class="formInput" autofocus placeholder="Password" onChange={this.onInputChange} required /> 
             </div>
             <button class="formContinue" type="submit">Continue</button>
             <p class="formExtra"> 
@@ -36,7 +56,7 @@ class Login extends Component{
         <form className={`form${this.state.isLoginVisible ? "Hidden" : ""}`}id="signup">
             <h1 class="formTitle">Create Account</h1>
             <div class="formInput">
-                <input type="email" class="formInput" autofocus placeholder="Email" required />
+                <input type="email" class="formInput" autofocus placeholder="Email" onChange={this.onInputChange} required />
                 <input type="password" class="formInput" autofocus placeholder="Password" required />
                 <input type="password" class="formInput" autofocus placeholder="Confirm Password" required />
             </div>

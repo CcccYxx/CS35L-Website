@@ -1,20 +1,16 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import './Profile.css';
 
-fetch('http://localhost:8080/user')
-.then(result => {
-    return result.json();
-})
-.then(data => {
-    console.log(data);
-})
+
+
 class Profile extends Component{
     constructor(props) {
         super(props);
         this.state = {
-            name:'John Smith',
+            editing: true,
+            Name:'Jerry Smith',
             email:'johnsmith@email.com',
-            password:'password',
             id:'johnsmith1234',
             friends:'6',
             Games: ['fortnite ', 'chess ', 'strategic games', 'multi-player'],
@@ -24,6 +20,31 @@ class Profile extends Component{
     handleChange = event => {
         this.setState({ image: event.target.value });
       };
+    nameChange = event => {
+        this.setState({ Name: event.target.value });
+    };
+    idChange = event => {
+        this.setState({ id: event.target.value });
+    };
+    emailChange = event => {
+        this.setState({ email: event.target.value });
+    };
+    editingClick = event => {
+        this.setState({ editing: !this.state.editing });
+    };
+       
+    handleClick = event => {
+        event.preventDefault();
+        const newProfile = {
+            id: this.state.id,
+            image: this.state.image,
+            Games: this.state.Games,
+            Name: this.state.Name,
+            Email: this.state.email
+        }
+        axios.post('/profile', newProfile);
+
+    }
 
     render() {
         return(
@@ -36,22 +57,41 @@ class Profile extends Component{
                         style={{width:"200px", height:"200px", borderRadius:"60px"}}
                     />
                     <div>
-                        <form>
-                            <label>
-                                change url: 
-                                <input type='text' value = {this.state.image} onChange={this.handleChange}/>
-                            </label>
-                        </form>
+                        {this.state.editing ? <h4></h4> : 
+                            (<form>
+                                <label>
+                                    change url: 
+                                    <input type='text' value = {this.state.image} onChange={this.handleChange}/>
+                                </label>
+                            </form>)
+                        }   
                     </div>
+                    <button onClick={this.handleClick}>post info in database</button>
+                    {this.state.editing ? <button onClick={this.editingClick}>edit profile</button> :
+                    (<button onClick={this.editingClick}>save changes</button>)
+                    }
                 </div>
                 <div className='Profile'>
                     <h1> Info</h1>
-                    <ul>
-                        <li> Name - {this.state.name} </li>
-                        <li> UserId - {this.state.id} </li>
-                        <li> Email - {this.state.email} </li>
-                        <li> Friends - {this.state.friends} </li>
-                    </ul>
+                    {this.state.editing ? 
+                        <ul>
+                            <li> Name - {this.state.Name} </li>
+                            <li> UserId - {this.state.id} </li>
+                            <li> Email - {this.state.email} </li>
+                            <li> Friends - {this.state.friends} </li>
+                        </ul>
+                        : ( 
+                        <form>
+                            <ul>
+                                <li> Name - <input type='text' value = {this.state.Name} onChange={this.nameChange}/> </li>
+                                <li> Id - <input type='text' value = {this.state.id} onChange={this.idChange}/> </li>
+                                <li> Email - <input type='text' value = {this.state.email} onChange={this.emailChange}/> </li>
+                            </ul>
+                        </form>
+                        
+                        )
+                        
+                    }
                     <h1> Top Games</h1>
                     <div> 
                         <ul>
