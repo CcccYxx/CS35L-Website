@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require('mongoose');
 const getPosts = require("./controllers/posts");
+const postMessage = require("./models/postMessage");
 const Profile = require("./models/profile");
 const User = require("./user"); 
 const app = express();
@@ -46,11 +47,24 @@ app.post('/profile', (request, response) => {
     });
 })
 
-/*
-app.get('/forum', (req, res) => {
-    res.send("Hello")
-});
-*/
+app.post('/forum', (req, res) => {
+    const newPostMessage = new postMessage({
+        title: req.body.title,
+        message: req.body.message,
+        creator: req.body.creator,
+        tags: req.body.tags,
+        selectedFile: req.body.selectedFile
+    })
+    newPostMessage
+        .save()
+        .then(result => {
+            console.log(result);
+        })
+        .catch(err => console.log(err));
+    res.status(201).json({
+        message: "Handling POST request to /forum",
+    })
+})
 
 
 

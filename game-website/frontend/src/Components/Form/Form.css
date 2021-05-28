@@ -2,7 +2,8 @@
     font-family: 'Mulish', sans-serif;
     width: 25vw;
     margin-top: 4rem;
-    
+    margin-right: 4rem;
+    padding: 1rem;
     box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
     border-radius: var(--border-radius);
 }
