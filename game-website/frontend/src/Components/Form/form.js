@@ -66,7 +66,7 @@ class Form extends React.Component{
                         </label>
                         <label>
                             Tags
-                            <input type="text" class="formInput" autofocus placeholder="Tags(seperacted with ',')" onChange={this.onInputChangeTags} /> 
+                            <input type="text" class="formInput" autofocus placeholder="Tags(seperated with ',')" onChange={this.onInputChangeTags} /> 
                         </label>
                     </form>
                 </div>
