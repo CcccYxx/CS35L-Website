@@ -1,3 +1,15 @@
+.forumPageContainer{
+    display: flex;
+}
+
+
+
 .posts{
-   
+   flex: 70%;
+}
+
+.form{
+    flex: 30%;
+    position: absolute;
+    margin-left: 70%;
 }

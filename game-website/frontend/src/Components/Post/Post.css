@@ -1,0 +1,44 @@
+.postContainer{
+    font-family: 'Mulish', sans-serif;
+    width: 25vw;
+    margin: auto;
+    margin: 4rem; 
+    padding: 1rem;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
+    border-radius: var(--border-radius);
+}
+
+
+.tags{
+    text-align: left;
+    list-style-type: '#';
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+}
+
+.postFooter{
+    display: flex;
+    align-items: center;
+}
+
+.likeContainer{
+    flex: 50%;
+    display: flex;
+    align-items: center;
+}
+
+.likeButton{
+    height: 20px;
+    width: 40px;  
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.delContainer{
+    align-content: flex-end;
+    flex: 5%;
+}
+
+.delButton{
+    align-self: flex-end;
+}
