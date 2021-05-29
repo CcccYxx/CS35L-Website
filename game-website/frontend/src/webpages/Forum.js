@@ -57,7 +57,7 @@ class Forum extends React.Component{
     componentDidMount(){
         axios.get('/forum/get')
         .then ((res) => {
-            if(res.status === 200){
+            if(res.status === 200 || res.status === 204){ // status 204: display nothing if responsed with empty json(no posts in DB)
                 const postJson = res.data;
                 this.setState({
                     posts: postJson.reverse(),
