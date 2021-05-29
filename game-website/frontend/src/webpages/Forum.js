@@ -9,7 +9,7 @@ class Forum extends React.Component{
         super(props);
         this.state={
             posts:[],
-
+            postsCount: 0,
         }
     }
 
@@ -21,7 +21,10 @@ class Forum extends React.Component{
             if(res.status === 200){
                 var newPosts = [...this.state.posts];
                 newPosts.splice(index, 1);
-                this.setState({posts: newPosts});
+                this.setState({
+                    posts: newPosts,
+                    postsCount: newPosts.length
+                });
             }else{
                 alert("Failed to delete this post.");
             }
@@ -53,22 +56,29 @@ class Forum extends React.Component{
 
     componentDidMount(){
         axios.get('/forum/get')
-        .then((res) => {
+        .then ((res) => {
             const postJson = res.data;
             if(res.status === 200){
                 this.setState({
-                    posts: postJson
+                    posts: postJson.reverse(),
+                    postsCount: postJson.length
                 })
             }
         })
     }
 
     render(){
+        const postsCount = this.state.postsCount;
         return(
             <div className="forumPageContainer">
                <div className="posts">
-                    {this.state.posts.reverse().map((post, index) => {
-                        return(<Post key={index} title={post.title} message = {post.message} tags={post.tags} creator={post.creator} date={post.createdAt} likeCount={post.likeCount} selectedFile={post.selectedFile} onClickLike={this.onClickLike} onClickDel={this.onClickDel} i={index}/>)
+                    {this.state.posts.slice(0, postsCount % 2 === 0 ? postsCount/2 : postsCount/2 + 1).map((post, index) => {
+                        return(<Post key={post._id} title={post.title} message = {post.message} tags={post.tags} creator={post.creator} date={post.createdAt} likeCount={post.likeCount} selectedFile={post.selectedFile} onClickLike={this.onClickLike} onClickDel={this.onClickDel} i={index}/>)
+                    })}   
+                </div>
+                <div className="posts">
+                    {this.state.posts.slice(postsCount % 2 === 0 ? postsCount/2 : postsCount/2 + 1, postsCount).map((post, index) => {
+                        return(<Post key={post._id} title={post.title} message = {post.message} tags={post.tags} creator={post.creator} date={post.createdAt} likeCount={post.likeCount} selectedFile={post.selectedFile} onClickLike={this.onClickLike} onClickDel={this.onClickDel} i={index +  (postsCount % 2 === 0 ? Math.floor(postsCount/2) : Math.floor(postsCount/2 + 1))}/>)
                     })}   
                 </div>
                 <div id="formContainer">

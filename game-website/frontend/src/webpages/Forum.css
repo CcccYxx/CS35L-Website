@@ -2,10 +2,6 @@
     display: flex;
 }
 
-.posts{
-   flex: 70%;
-}
-
 #formContainer{
     flex: 30%;
     position: fixed;
