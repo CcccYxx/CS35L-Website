@@ -73,12 +73,18 @@ class Forum extends React.Component{
             <div className="forumPageContainer">
                <div className="posts">
                     {this.state.posts.slice(0, postsCount % 2 === 0 ? postsCount/2 : postsCount/2 + 1).map((post, index) => {
-                        return(<Post key={post._id} title={post.title} message = {post.message} tags={post.tags} creator={post.creator} date={post.createdAt} likeCount={post.likeCount} selectedFile={post.selectedFile} onClickLike={this.onClickLike} onClickDel={this.onClickDel} i={index}/>)
+                        return(<Post key={post._id} title={post.title} message = {post.message} tags={post.tags} creator={post.creator} 
+                            date={post.createdAt} likeCount={post.likeCount} selectedFile={post.selectedFile} 
+                            onClickLike={this.onClickLike} onClickDel={this.onClickDel} 
+                            i={index}/>)
                     })}   
                 </div>
                 <div className="posts">
                     {this.state.posts.slice(postsCount % 2 === 0 ? postsCount/2 : postsCount/2 + 1, postsCount).map((post, index) => {
-                        return(<Post key={post._id} title={post.title} message = {post.message} tags={post.tags} creator={post.creator} date={post.createdAt} likeCount={post.likeCount} selectedFile={post.selectedFile} onClickLike={this.onClickLike} onClickDel={this.onClickDel} i={index +  (postsCount % 2 === 0 ? Math.floor(postsCount/2) : Math.floor(postsCount/2 + 1))}/>)
+                        return(<Post key={post._id} title={post.title} message = {post.message} tags={post.tags} creator={post.creator} 
+                            date={post.createdAt} likeCount={post.likeCount} selectedFile={post.selectedFile} 
+                            onClickLike={this.onClickLike} onClickDel={this.onClickDel} 
+                            i={index +  (postsCount % 2 === 0 ? Math.floor(postsCount/2) : Math.floor(postsCount/2 + 1))}/>)
                     })}   
                 </div>
                 <div id="formContainer">
