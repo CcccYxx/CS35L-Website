@@ -57,16 +57,16 @@ app.get('/api/profile/:id', (req, res) => {
         )
   });
 
-app.post('/profile', (request, response) => {
-    const {id, image, Games, Email, Name} = request.body;
-    const profile = new Profile({id, image, Games, Email, Name});
-    profile.save(function(err) {
-        if(err) {
-            console.log(err);
-        } else{
-            response.status(200).send("Profile was saved!");
-        }
-    });
+app.put('/profile/:id', (request, response) => {
+    const id = request.params.id;
+    Profile.findByIdAndUpdate(id, request.body, function (err, docs) {
+      if (err){
+          console.log(err)
+      }
+      else{
+          console.log("Updated User : ", docs);
+      }
+  });
 });
 
 app.post('/api/authenticate', function(req, res) {
