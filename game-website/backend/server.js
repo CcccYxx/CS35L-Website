@@ -74,7 +74,7 @@ app.post('/forum/post', (req, res) => {
 
 app.get('/forum/get', async (req, res) => {
     try{
-        const posts = await postMessage.find();
+        const posts = await postMessage.find().limit(20);
         if(posts.length >= 0){
             res.status(200).json(posts);
         }else{
