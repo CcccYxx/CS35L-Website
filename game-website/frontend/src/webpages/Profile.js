@@ -32,8 +32,7 @@ class Profile extends Component{
     editingClick = event => {
         this.setState({ editing: !this.state.editing });
     };
-    getClick = event => {
-        event.preventDefault();
+    componentDidMount() {
         axios.get('/api/profile/' + this.state.id)
             .then(({ data}) => this.setState({ Name: data.Name, email: data.Email, image: data.image, Games:data.Games })) // <-- set state
             .catch(e => console.log(e))
