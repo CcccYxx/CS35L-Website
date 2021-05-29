@@ -12,13 +12,16 @@ class Forum extends React.Component{
 
         }
     }
+    
     componentWillMount(){
         axios.get('/forum/get')
         .then((res) => {
             const postJson = res.data;
-            this.setState({
-                posts: postJson
-            })
+            if(res.status === 200){
+                this.setState({
+                    posts: postJson
+                })
+            }
         })
     }
 
