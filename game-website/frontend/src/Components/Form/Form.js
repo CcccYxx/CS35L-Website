@@ -47,8 +47,14 @@ class Form extends React.Component{
                 tags: this.state.tags.split(','),
                 selectedFile: this.state.selectedFile
             }
-            axios.post("/forum/post", newPost);
-            window.location.reload(false);
+            axios.post("/forum/post", newPost)
+            .then(res => {
+                if(res.status === 201){
+                    window.location.reload(false);
+                }else{
+                    alert("Failed to submit post.")
+                }
+            })
         }
     }
 

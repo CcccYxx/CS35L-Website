@@ -57,12 +57,14 @@ class Forum extends React.Component{
     componentDidMount(){
         axios.get('/forum/get')
         .then ((res) => {
-            const postJson = res.data;
             if(res.status === 200){
+                const postJson = res.data;
                 this.setState({
                     posts: postJson.reverse(),
                     postsCount: postJson.length
                 })
+            }else{
+                alert("Failed to load posts")
             }
         })
     }
