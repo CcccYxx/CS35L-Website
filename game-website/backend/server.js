@@ -47,7 +47,7 @@ app.post('/profile', (request, response) => {
     });
 })
 
-app.post('/forum', (req, res) => {
+app.post('/forum/post', (req, res) => {
     const newPostMessage = new postMessage({
         title: req.body.title,
         message: req.body.message,
@@ -59,14 +59,27 @@ app.post('/forum', (req, res) => {
         .save()
         .then(result => {
             console.log(result);
+            res.status(201).json({
+                message: "Handling POST request to /forum",
+                createdPost: result
+            })
         })
-        .catch(err => console.log(err));
-    res.status(201).json({
-        message: "Handling POST request to /forum",
-    })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({
+                error: err
+            })
+        });
 })
 
-
+app.get('/forum/get', async (req, res) => {
+    try{
+        const posts = await postMessage.find();
+        res.status(200).json(posts);
+    }catch(err){
+        res.status(404).json({message: err.message});
+    }
+})
 
 app.listen(8080, function() {
     console.log("Server is running on Port: 8080");

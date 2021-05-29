@@ -1,18 +1,20 @@
 import React from 'react';
 import './Post.css'
+import moment from 'moment'
 
 const Post = ({title, message, creator, tags, selectedFile, likeCount, date, onClickLike, onClickDel}) => {
     
     const tagList = tags.map((tag) => 
-        <li>
+        <li key={tag} className="tag">
             {tag}
         </li>
     );
     return(
-        <div className="postContainer" style={{backgroundImage:{selectedFile}}}>
+        <div className="postContainer" >
             <div className="postHeader">
+                <img id={selectedFile==="" ? "image-hide":"image"} src={selectedFile}/>
                 <p className="creator">{creator}</p>
-                <p className="date">{date}</p>
+                <p className="date">{moment(date).format('DD MMM, YYYY hh:mm')}</p>
             </div>
             <div className="postBody">
                 <ul className="tags">

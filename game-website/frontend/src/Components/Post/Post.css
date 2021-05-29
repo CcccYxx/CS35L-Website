@@ -10,14 +10,18 @@
 
 
 .tags{
+    padding-left: 10px;
     text-align: left;
     list-style-type: '#';
     display: grid;
-    grid-template-columns: repeat(4, auto);
+    grid-template-columns: repeat(12, auto);
 }
+
+
 
 .postFooter{
     display: flex;
+    
     align-items: center;
 }
 
@@ -41,4 +45,13 @@
 
 .delButton{
     align-self: flex-end;
+}
+
+#image{
+    object-fit: cover;
+    width: 25vw;
+}
+
+#image-hide{
+    display: none;
 }

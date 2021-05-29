@@ -35,38 +35,44 @@ class Form extends React.Component{
         this.setState({selectedFile: base64})
     }
 
-    handleSubmit = () => {
-        const newPost = {
-            creator: this.state.creator,
-            title: this.state.title,
-            message: this.state.message,
-            tags: this.state.tags.split(','),
-            selectedFile: this.state.selectedFile
+    handleSubmit = (event) => {
+        event.preventDefault(); //needs to be fixed so no empty submit
+        if(this.state.creator==="" || this.state.title==="" || this.state.message===""||this.state.tags===""){
+            alert("Please fill in the form completely");
+        }else{
+            const newPost = {
+                creator: this.state.creator,
+                title: this.state.title,
+                message: this.state.message,
+                tags: this.state.tags.split(','),
+                selectedFile: this.state.selectedFile
+            }
+            axios.post("/forum/post", newPost);
+            window.location.reload(false);
         }
-        axios.post("/forum", newPost);
     }
 
     render(){
         return(
             <div className="formContainer">
-                <div class="formInput">
+                <div className="formInput">
                     <form>
                         <h2 id="formTitle">Make a Post</h2>
                         <label>
                             Creator 
-                            <input type="text" class="formInput" autofocus placeholder="Creator" onChange={this.onInputChangeCreator}/>
+                            <input type="text" className="formInput"  required placeholder="Creator" onChange={this.onInputChangeCreator}/>
                         </label>
                         <label>
                             Title
-                            <input type="text" class="formInput" autofocus placeholder="Title" onChange={this.onInputChangeTitle} /> 
-                        </label>
-                        <label>
-                            Messages
-                            <input type="text" class="formInput" autofocus placeholder="Messages" onChange={this.onInputChangeMsg} /> 
+                            <input type="text" className="formInput"  required placeholder="Title" onChange={this.onInputChangeTitle} /> 
                         </label>
                         <label>
                             Tags
-                            <input type="text" class="formInput" autofocus placeholder="Tags(seperated with ',')" onChange={this.onInputChangeTags} /> 
+                            <input type="text" className="formInput"  required placeholder="Tags(seperated with ',')" onChange={this.onInputChangeTags} /> 
+                        </label>
+                        <label>
+                            Messages
+                            <input type="text" className="formInput"  required placeholder="Messages" onChange={this.onInputChangeMsg} /> 
                         </label>
                     </form>
                 </div>

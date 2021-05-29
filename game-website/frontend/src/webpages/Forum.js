@@ -2,15 +2,33 @@ import React from 'react';
 import Post from '../Components/Post/Post'
 import Form from '../Components/Form/Form'
 import './Forum.css'
+import axios from 'axios';
+
 class Forum extends React.Component{
+    constructor(props){
+        super(props);
+        this.state={
+            posts:[],
 
-
+        }
+    }
+    componentWillMount(){
+        axios.get('/forum/get')
+        .then((res) => {
+            const postJson = res.data;
+            this.setState({
+                posts: postJson
+            })
+        })
+    }
 
     render(){
         return(
             <div className="forumPageContainer">
                <div className="posts">
-                   <Post title="Hello" message = "I am a weeb, so I like anime games and stuff" tags={["action", "anime"]} creator="CCCyx" date="2021/5/28" likeCount={999}/>
+                    {this.state.posts.map((post, index) => {
+                        return(<Post key={index} title={post.title} message = {post.message} tags={post.tags} creator={post.creator} date={post.createdAt} likeCount={post.likeCount} selectedFile={post.selectedFile}/>)
+                    })}   
                 </div>
                 <div id="form">
                     <Form/>
