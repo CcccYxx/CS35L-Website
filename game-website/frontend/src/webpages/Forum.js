@@ -12,7 +12,23 @@ class Forum extends React.Component{
 
         }
     }
-    
+
+    onClickDel = (event) => {
+        const index = event.currentTarget.value;
+        const targetPost = this.state.posts[index];
+        axios.delete('/del/'+targetPost._id)
+        .then(res => {
+            if(res.status === 200){
+                var newPosts = [...this.state.posts];
+                newPosts.splice(index, 1);
+                this.setState({posts: newPosts});
+            }else{
+                alert("Failed to delete this post.");
+            }
+        })
+
+    }
+
     onClickLike = (event) => {
         const index = event.currentTarget.value;
         const targetPost = this.state.posts[index];
@@ -23,11 +39,13 @@ class Forum extends React.Component{
         axios.patch('/forum/patch/likeCount', body)
             .then(res => {
                 if (res.status === 200) {
-                    let posts = [...this.state.posts];
-                    let post = { ...posts[index] };
-                    post.likeCount = post.likeCount + 1;
-                    posts[index] = post;
-                    this.setState({ posts })
+                    let newPosts = [...this.state.posts];
+                    let targetPost = { ...newPosts[index] };
+                    targetPost.likeCount = targetPost.likeCount + 1;
+                    newPosts[index] = targetPost;
+                    this.setState({ posts: newPosts })
+                }else{
+                    alert("Failed to like this post.")
                 }
             })
 
@@ -50,7 +68,7 @@ class Forum extends React.Component{
             <div className="forumPageContainer">
                <div className="posts">
                     {this.state.posts.map((post, index) => {
-                        return(<Post key={index} title={post.title} message = {post.message} tags={post.tags} creator={post.creator} date={post.createdAt} likeCount={post.likeCount} selectedFile={post.selectedFile} onClickLike={this.onClickLike} i={index}/>)
+                        return(<Post key={index} title={post.title} message = {post.message} tags={post.tags} creator={post.creator} date={post.createdAt} likeCount={post.likeCount} selectedFile={post.selectedFile} onClickLike={this.onClickLike} onClickDel={this.onClickDel} i={index}/>)
                     })}   
                 </div>
                 <div id="formContainer">
