@@ -57,7 +57,7 @@ class Profile extends Component{
                         style={{width:"200px", height:"200px", borderRadius:"60px"}}
                     />
                     <div>
-                        {this.state.editing ? <h4></h4> : 
+                        {this.state.editing ? <h4>""</h4> : 
                             (<form>
                                 <label>
                                     change url: 

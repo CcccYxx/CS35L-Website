@@ -75,7 +75,7 @@ app.post('/forum/post', (req, res) => {
 app.get('/forum/get', async (req, res) => {
     try{
         const posts = await postMessage.find();
-        if(posts){
+        if(posts.length >= 0){
             res.status(200).json(posts);
         }else{
             res.status(404).json({message: "No valid entry found"})
@@ -84,6 +84,22 @@ app.get('/forum/get', async (req, res) => {
         res.status(404).json({message: err.message});
     }
 })
+
+app.patch('/forum/patch/likeCount', (req, res) => {
+    const id = req.body._id;
+    postMessage.update({_id: id}, {$set:{likeCount: req.body.likeCount+1}})
+    .exec()
+    .then(result => {
+        console.log(id);
+        console.log(result);
+        res.status(200).json(result);
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json({message: err});
+    });
+})
+
 
 app.listen(8080, function() {
     console.log("Server is running on Port: 8080");
