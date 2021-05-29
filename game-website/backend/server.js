@@ -10,7 +10,7 @@ const uri = "mongodb+srv://Gamewebsite:WqvWDOvAEHUPfevX@cluster0.h0txi.mongodb.n
 
 //Middleware
 app.use(express.urlencoded({ extended: false })); //parse URL-encoded bodies
-app.use(express.json()); //parse JSON bodies
+app.use(express.json({limit:'50mb'})); //parse JSON bodies
 //app.use('/forum', postRoutes);
 
 mongoose.connect(uri, 
