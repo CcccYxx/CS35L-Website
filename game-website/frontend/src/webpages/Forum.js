@@ -67,7 +67,7 @@ class Forum extends React.Component{
         return(
             <div className="forumPageContainer">
                <div className="posts">
-                    {this.state.posts.map((post, index) => {
+                    {this.state.posts.reverse().map((post, index) => {
                         return(<Post key={index} title={post.title} message = {post.message} tags={post.tags} creator={post.creator} date={post.createdAt} likeCount={post.likeCount} selectedFile={post.selectedFile} onClickLike={this.onClickLike} onClickDel={this.onClickDel} i={index}/>)
                     })}   
                 </div>
