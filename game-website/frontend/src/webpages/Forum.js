@@ -12,29 +12,25 @@ class Forum extends React.Component{
 
         }
     }
-
+    
     onClickLike = (event) => {
-        const index =  event.currentTarget.value;
-        for(var i in this.state.posts){
-            if(i === index){
-                const targetPost = this.state.posts[i];
-                const body = {
-                    _id: targetPost._id,
-                    likeCount: targetPost.likeCount
-                }
-                axios.patch('/forum/patch/likeCount', body)
-                .then(res => {
-                    if(res.status === 200){
-                        let posts = [...this.state.posts];
-                        let post = {...posts[index]};
-                        post.likeCount = post.likeCount + 1;
-                        posts[index] = post;
-                        this.setState({posts})
-                    }
-                })
-                break;
-            }
+        const index = event.currentTarget.value;
+        const targetPost = this.state.posts[index];
+        const body = {
+            _id: targetPost._id,
+            likeCount: targetPost.likeCount
         }
+        axios.patch('/forum/patch/likeCount', body)
+            .then(res => {
+                if (res.status === 200) {
+                    let posts = [...this.state.posts];
+                    let post = { ...posts[index] };
+                    post.likeCount = post.likeCount + 1;
+                    posts[index] = post;
+                    this.setState({ posts })
+                }
+            })
+
     }
 
     componentDidMount(){
