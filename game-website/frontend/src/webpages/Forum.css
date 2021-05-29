@@ -6,8 +6,8 @@
    flex: 70%;
 }
 
-#form{
+#formContainer{
     flex: 30%;
-    position: absolute;
+    position: fixed;
     margin-left: 70%;
 }

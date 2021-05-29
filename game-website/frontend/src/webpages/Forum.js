@@ -30,8 +30,8 @@ class Forum extends React.Component{
                         return(<Post key={index} title={post.title} message = {post.message} tags={post.tags} creator={post.creator} date={post.createdAt} likeCount={post.likeCount} selectedFile={post.selectedFile}/>)
                     })}   
                 </div>
-                <div id="form">
-                    <Form/>
+                <div id="formContainer">
+                    <Form className="postForm"/>
                 </div>
             </div>
         )
