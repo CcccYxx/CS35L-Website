@@ -23,9 +23,6 @@ class Profile extends Component{
     nameChange = event => {
         this.setState({ Name: event.target.value });
     };
-    idChange = event => {
-        this.setState({ id: event.target.value });
-    };
     emailChange = event => {
         this.setState({ email: event.target.value });
     };
@@ -34,11 +31,12 @@ class Profile extends Component{
     };
     componentDidMount() {
         axios.get('/api/profile/' + this.state.id)
-            .then(({ data}) => this.setState({ Name: data.Name, email: data.Email, image: data.image, Games:data.Games })) // <-- set state
+            .then(({ data}) => this.setState({ Friends: data.Friends, Name: data.Name, email: data.Email, image: data.image, Games:data.Games })) // <-- set state
             .catch(e => console.log(e))
     }
 
     handleClick = event => {
+        this.setState({ editing: !this.state.editing });
         event.preventDefault();
         const newProfile = {
             image: this.state.image,
@@ -71,7 +69,7 @@ class Profile extends Component{
             <div className='cols'>
                 <div className='top'>
                     <img 
-                        border= '5px solid #555'
+                        border= '2px solid #555'
                         alt='did not load'
                         src={this.state.image}
                         style={{width:"200px", height:"200px", borderRadius:"60px"}}
@@ -86,25 +84,21 @@ class Profile extends Component{
                             </form>)
                         }   
                     </div>
-                    <button onClick={this.handleClick}>post info in database</button>
                     {this.state.editing ? <button onClick={this.editingClick}>edit profile</button> :
-                    (<button onClick={this.editingClick}>save changes</button>)
+                    (<button onClick={this.handleClick}>save changes</button>)
                     }
                 </div>
                 <div className='Profile'>
                     <h1> Info</h1>
                     {this.state.editing ? 
-                        <ul>
-                            <li> Name - {this.state.Name} </li>
-                            <li> Email - {this.state.email} </li>
-                        </ul>
+                        <div>
+                            <p> Name - {this.state.Name} </p>
+                            <p> Email - {this.state.email} </p>
+                        </div>
                         : ( 
                         <form>
-                            <ul>
-                                <li> Name - <input type='text' value = {this.state.Name} onChange={this.nameChange}/> </li>
-                                <li> Id - <input type='text' value = {this.state.id} onChange={this.idChange}/> </li>
-                                <li> Email - <input type='text' value = {this.state.email} onChange={this.emailChange}/> </li>
-                            </ul>
+                            <p> Name - <input type='text' value = {this.state.Name} onChange={this.nameChange}/> </p>
+                            <p> Email - <input type='text' value = {this.state.email} onChange={this.emailChange}/> </p>
                         </form>
                         
                         )
@@ -121,13 +115,16 @@ class Profile extends Component{
                 </div>
                 <div className='Friends'>
                     <h1> Friends</h1>
-                    <img src={this.state.image} style={{width:"100px", height:"100px", borderRadius:"30px"}} />
-                    {this.state.Friends.map((image) => (
-                                <img 
-                                    src = {image}
-                                    style={{width:"100px", height:"100px", borderRadius:"30px"}}
-                                />
-                        ))}
+                    {this.state.Friends.map((image, index) => (
+                    <p>
+                        <img 
+                            src={image}
+                            border= '1px solid #555'
+                            style={{width:"100px", height:"100px", borderRadius:"30px"}}
+                            key={index}
+                         />
+                    </p>
+                    ))}
                 </div>
             </div>
         );  
