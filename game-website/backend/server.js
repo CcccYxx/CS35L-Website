@@ -5,7 +5,8 @@ const User = require("./user");
 const app = express();
 const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
-const withAuth = require('./middleware/middleware')
+const withAuth = require('./middleware/middleware');
+const { request } = require("express");
 const uri = "mongodb+srv://Gamewebsite:WqvWDOvAEHUPfevX@cluster0.h0txi.mongodb.net/UserInformation?retryWrites=true&w=majority";
 // import postRoutes from './posts';
 
@@ -44,8 +45,16 @@ app.get('/checkToken', withAuth, function(req, res) {
     res.sendStatus(200);
   });
 
-app.get('/api/profile', withAuth, function(req, res) {
-    res.send('The password is potato');
+app.get('/api/profile/:id', (req, res) => {
+    const id = req.params.id;
+    Profile.findById (id)
+        .then(data => {
+            console.log(data);
+            res.send(data);
+        })
+        .catch(
+            console.log("error")
+        )
   });
 
 app.post('/profile', (request, response) => {

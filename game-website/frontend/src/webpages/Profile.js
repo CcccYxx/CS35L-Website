@@ -11,7 +11,7 @@ class Profile extends Component{
             editing: true,
             Name:'Jerry Smith',
             email:'johnsmith@email.com',
-            id:'johnsmith1234',
+            id:'60b1bf9d529d9b6a99a313f4',
             friends:'6',
             Games: ['fortnite ', 'chess ', 'strategic games', 'multi-player'],
             image:"https://images.unsplash.com/photo-1484611941511-3628849e90f7?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTl8fHBlb3BsZXxlbnwwfDJ8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60"
@@ -32,7 +32,13 @@ class Profile extends Component{
     editingClick = event => {
         this.setState({ editing: !this.state.editing });
     };
-       
+    getClick = event => {
+        event.preventDefault();
+        axios.get('/api/profile/' + this.state.id)
+            .then(({ data}) => this.setState({ Name: data.Name, email: data.Email, image: data.image, Games:data.Games })) // <-- set state
+            .catch(e => console.log(e))
+    }
+
     handleClick = event => {
         event.preventDefault();
         const newProfile = {
@@ -82,6 +88,7 @@ class Profile extends Component{
                         }   
                     </div>
                     <button onClick={this.handleClick}>post info in database</button>
+                    <button onClick={this.getClick}>get info from database</button>
                     {this.state.editing ? <button onClick={this.editingClick}>edit profile</button> :
                     (<button onClick={this.editingClick}>save changes</button>)
                     }
