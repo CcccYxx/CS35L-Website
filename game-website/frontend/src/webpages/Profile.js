@@ -12,8 +12,9 @@ class Profile extends Component{
             editing: true,
             Name:'',
             email:'',
-            id:'60b1c7baf77be76dd3b2c28b',
-            Friends: ["60b2c15fd47083e6ee4a975f", "60b1c8a43e5f716e4a165b69"],
+            id:'60b3dc4ae58ae39e94b2c28e',
+            Friendids: [],
+            Friends: [],            
             Games: [],
             image:""
           };
@@ -32,11 +33,22 @@ class Profile extends Component{
     };
     componentDidMount() {
         axios.get('/api/profile/' + this.state.id)
-            .then(({ data}) => this.setState({ Friends: data.Friends, Name: data.Name, email: data.Email, image: data.image, Games:data.Games })) // <-- set state
+            .then(({ data}) => this.setState({ Friends: data.Friends, Friendids: data.Friendids, Name: data.Name, email: data.Email, image: data.image, Games:data.Games })) // <-- set state
             .catch(e => console.log(e))
     }
 
     handleClick = event => {
+        for (let i = 0; i < this.state.Friendids.length; i++) {
+            axios.get('/api/profile/' + this.state.Friendids[i])
+                .then(({ data}) => this.setState(update(this.state, {
+                    Friends: {
+                        [i]: {
+                            $set: data
+                        }
+                    }
+                })))
+                .catch(e => console.log(e))
+        }
         this.setState({ editing: !this.state.editing });
         event.preventDefault();
         const newProfile = {
@@ -44,7 +56,8 @@ class Profile extends Component{
             Games: this.state.Games,
             Name: this.state.Name,
             Email: this.state.email,
-            Friends: this.state.Friends
+            Friends: this.state.Friends,
+            Friendids: this.state.Friendids
         }
         axios.put('/profile/' + this.state.id, newProfile);
 
@@ -136,21 +149,46 @@ class Profile extends Component{
                     </div>)
                     }
                 </div>
-                <div className='blogs'>
-                    <h1> Posts</h1>
-                </div>
                 <div className='Friends'>
                     <h1> Friends</h1>
-                    {this.state.Friends.map((image, index) => (
-                    <p>
-                        <img 
-                            src={image}
-                            border= '1px solid #555'
-                            style={{width:"100px", height:"100px", borderRadius:"30px"}}
-                            key={index}
-                         />
-                    </p>
-                    ))}
+                    {this.state.editing ? (
+                        this.state.Friends.map((friend, index) => (
+                            <div>
+                                <img 
+                                    src={friend.image}
+                                    border= '1px solid #555'
+                                    style={{width:"100px", height:"100px", borderRadius:"30px"}}
+                                    key={index}
+                                 />
+                                <p>{friend.Name}</p>
+                                <p>{friend.Email}</p>
+                                <small>Games: </small>
+                               {friend.Games.map((game) =>  
+                                    <small>{game} </small>
+                                )}         
+                                <h5></h5>
+                   
+                            </div>
+                            ))
+                    )
+                    
+                    : ( <div>
+                        {this.state.Friendids.map((id, index) => (
+                            <input type='text' value = {id} onChange={e => {
+                                this.setState(update(this.state, {
+                                    Friendids: {
+                                        [index]: {
+                                            $set: e.target.value
+                                        }
+                                    }
+                                }));
+                            }}/>))}
+                        <input type="button" onClick={e => {
+                            this.setState({ Friendids: [...this.state.Friendids, ""]})
+                        }} value="Add Friend id" />
+                    </div>
+                    )
+                    }
                 </div>
             </div>
         );  
