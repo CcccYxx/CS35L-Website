@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import update from 'react-addons-update';
 import './Profile.css';
 
 
@@ -12,7 +13,7 @@ class Profile extends Component{
             Name:'',
             email:'',
             id:'60b1c7baf77be76dd3b2c28b',
-            Friends: [],
+            Friends: ["60b2c15fd47083e6ee4a975f", "60b1c8a43e5f716e4a165b69"],
             Games: [],
             image:""
           };
@@ -40,10 +41,10 @@ class Profile extends Component{
         event.preventDefault();
         const newProfile = {
             image: this.state.image,
-            Games: ["chess", "fortnite", "pokemon"],
+            Games: this.state.Games,
             Name: this.state.Name,
             Email: this.state.email,
-            Friends: [this.state.image, this.state.image]
+            Friends: this.state.Friends
         }
         axios.put('/profile/' + this.state.id, newProfile);
 
@@ -68,12 +69,14 @@ class Profile extends Component{
         return(
             <div className='cols'>
                 <div className='top'>
-                    <img 
-                        border= '2px solid #555'
-                        alt='did not load'
-                        src={this.state.image}
-                        style={{width:"200px", height:"200px", borderRadius:"60px"}}
-                    />
+                    <div className="image">
+                        <img 
+                            border= '2px solid #555'
+                            alt='did not load'
+                            src={this.state.image}
+                            style={{width:"200px", height:"200px", borderRadius:"60px"}}
+                        />
+                    </div>
                     <div>
                         {this.state.editing ? <h4></h4> : 
                             (<form>
@@ -104,11 +107,34 @@ class Profile extends Component{
                         )
                     }
                     <h1> Top Games</h1>
+                    {this.state.editing ? 
                     <div> 
                         {this.state.Games.map((game) => (
                             <p>{game}</p>
                         ))}
-                    </div>
+                    </div> : 
+                    (<div> 
+                        {this.state.Games.map((game, index) => (
+                            <input type='text' value = {game} onChange={e => {
+                                this.setState(update(this.state, {
+                                    Games: {
+                                        [index]: {
+                                            $set: e.target.value
+                                        }
+                                    }
+                                }));
+                            }}/>
+                        ))}
+                        <input type="button" onClick={e => {
+                            this.setState({ Games: [...this.state.Games, ""]})
+                        }} value="Add Game" />
+                        <input type="button" onClick={e => {
+                            this.setState({
+                                Games: this.state.Games.splice(1)
+                            });
+                        }} value="Delete first Game" />
+                    </div>)
+                    }
                 </div>
                 <div className='blogs'>
                     <h1> Posts</h1>
