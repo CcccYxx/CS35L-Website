@@ -21,7 +21,7 @@ const Post = ({title, message, creator, tags, selectedFile, likeCount, date, onC
                     {tagList}
                 </ul>
                 <h2 className="title">{title}</h2> 
-                <p className="message">{message}</p>
+                <pre className="message" maxlength='50'>{message}</pre>
             </div>
             <div className="postFooter">
                 <div className="likeContainer">
