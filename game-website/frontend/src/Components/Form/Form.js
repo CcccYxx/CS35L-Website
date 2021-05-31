@@ -78,18 +78,19 @@ class Form extends React.Component{
                         </label>
                         <label>
                             Messages
-                            <textarea id="message" type="text" className="formInput"  required placeholder="Messages" onChange={this.onInputChangeMsg} /> 
+                            <textarea id="message" type="text" className="formInput"  required placeholder="Messages" onChange={this.onInputChangeMsg} maxLength='50'/> 
                         </label>
                     </form>
                 </div>
                 <div className="uploadFile">
                     <FileBase
+                        id="fileUploadModule"
                         type="file"
                         multiple={ false }
                         onDone={this.handleFileSubmit}
                     />
                 </div>
-                <button onClick={this.handleSubmit}>SUBMIT</button>
+                <button id="submitButton" onClick={this.handleSubmit}>SUBMIT</button>
             </div>
         );
     }

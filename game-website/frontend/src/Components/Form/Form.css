@@ -10,5 +10,34 @@
 
 #message{
     font: inherit;
-    height: 100px;
+    height: 150px;
+    font-size: 1.2rem;
+}
+
+.title{
+    font-size: 2rem;
+}
+
+#submitButton{
+    margin-top: 20px;
+    margin-bottom: 15px;
+    border: none;
+    font-size: 1.2rem;
+    width: 67%;
+    position: relative;
+    transform: translate(22%);
+    padding: 0.5rem; 
+    color: white; 
+    background: var(--color-primary-dark);
+    border-radius: var(--border-radius);
+}
+
+#submitButton:hover{
+    cursor: pointer;
+    background: #5d5fff;
+}
+
+.uploadFile{
+    margin-left: 8vw;
+    font-family: sans-serif;
 }

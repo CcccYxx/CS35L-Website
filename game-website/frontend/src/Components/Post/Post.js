@@ -6,33 +6,31 @@ const Post = ({title, message, creator, tags, selectedFile, likeCount, date, onC
     
     const tagList = tags.map((tag) => 
         <li key={tag} className="tag">
-            {tag}
+            <i>{tag}</i>
         </li>
     );
     return(
         <div className="postContainer" >
             <div className="postHeader">
                 <img id={selectedFile==="" ? "image-hide":"image"} src={selectedFile} alt=""/>
-                <p className="creator">{creator}</p>
-                <p className="date">{moment(date).format('DD MMM, YYYY hh:mm')}</p>
+                <p className="creator"><b>Author:</b> {creator}</p>
+                <p className="date"><b>Created at:</b> {moment(date).format('DD MMM, YYYY hh:mm')}</p>
             </div>
             <div className="postBody">
                 <ul className="tags">
                     {tagList}
                 </ul>
                 <h2 className="title">{title}</h2> 
-                <pre className="message" maxlength='50'>{message}</pre>
+                <pre className="message">{message}</pre>
             </div>
             <div className="postFooter">
                 <div className="likeContainer">
                     <button value={i} className="likeButton" onClick={onClickLike}>
-                        LIKE
                     </button>
                     <p className="likeCount">{likeCount}</p>
                 </div>
                 <div className="delContainer">
                     <button value={i} className="delButton" onClick={onClickDel}>
-                        DELETE
                     </button>
                 </div>
             </div>
