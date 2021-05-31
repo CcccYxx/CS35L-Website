@@ -91,7 +91,7 @@ class Profile extends Component{
                 </div>
                 <div className='Profile'>
                     <h1> Info</h1>
-                    {this.state.editing ? 
+                    {/* {this.state.editing ? 
                         <div>
                             {this.state.editing ? <h4></h4> : 
                                 (<form>
@@ -104,7 +104,7 @@ class Profile extends Component{
                         </div>
                         {this.state.editing ? <button onClick={this.editingClick}>edit profile</button> :
                         (<button onClick={this.handleClick}>save changes</button>)
-                        }
+                        } */}
                     </div>
                     <div className='Profile'>
                         <h1> Info</h1>
