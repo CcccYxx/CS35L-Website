@@ -2,6 +2,7 @@
     display: flex;
     background: rgb(255,255,255);
     background: linear-gradient(209deg, rgba(255,255,255,1) 0%, rgba(148,187,233,1) 100%);
+    width: 100vw;
 }
 
 #formContainer{
