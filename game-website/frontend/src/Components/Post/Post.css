@@ -19,6 +19,7 @@
 }
 
 .message{
+    overflow:auto;
     font-family: 'Mulish', sans-serif;
     font-size: 1.2rem;
 }

@@ -78,7 +78,7 @@ class Form extends React.Component{
                         </label>
                         <label>
                             Messages
-                            <textarea id="message" type="text" className="formInput"  required placeholder="Write something here..." onChange={this.onInputChangeMsg} maxLength='50'/> 
+                            <textarea id="message" type="text" className="formInput"  required placeholder="Write something here..." onChange={this.onInputChangeMsg}/> 
                         </label>
                     </form>
                 </div>
