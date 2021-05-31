@@ -6,11 +6,19 @@
     padding: 1rem;
     box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
     border-radius: var(--border-radius);
+    background-color: white;
+}
+
+#formInput{
+    border-radius: 6px;
+    border-style: groove;
 }
 
 #message{
+    border-style: groove;
+    border-width: 2px;
     font: inherit;
-    height: 150px;
+    height: 20vh;
     font-size: 1.2rem;
 }
 

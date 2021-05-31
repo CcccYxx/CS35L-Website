@@ -66,19 +66,19 @@ class Form extends React.Component{
                         <h2 id="formTitle">Make a Post</h2>
                         <label>
                             Creator 
-                            <input type="text" className="formInput"  required placeholder="Creator" onChange={this.onInputChangeCreator}/>
+                            <input id="formInput" type="text" className="formInput"  required placeholder="Creator" onChange={this.onInputChangeCreator}/>
                         </label>
                         <label>
                             Title
-                            <input type="text" className="formInput"  required placeholder="Title" onChange={this.onInputChangeTitle} /> 
+                            <input id="formInput" type="text" className="formInput"  required placeholder="Title" onChange={this.onInputChangeTitle} /> 
                         </label>
                         <label>
                             Tags
-                            <input type="text" className="formInput"  required placeholder="Tags(seperated with ',')" onChange={this.onInputChangeTags} /> 
+                            <input id="formInput" type="text" className="formInput"  required placeholder="Tags(seperated with ',')" onChange={this.onInputChangeTags} /> 
                         </label>
                         <label>
                             Messages
-                            <textarea id="message" type="text" className="formInput"  required placeholder="Messages" onChange={this.onInputChangeMsg} maxLength='50'/> 
+                            <textarea id="message" type="text" className="formInput"  required placeholder="Write something here..." onChange={this.onInputChangeMsg} maxLength='50'/> 
                         </label>
                     </form>
                 </div>
