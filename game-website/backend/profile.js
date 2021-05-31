@@ -5,6 +5,7 @@ const ProfileSchema = new mongoose.Schema({
     image: String,
     Games: [],
     Friends: [],
+    Friendids: [],
     Name: String,
     Email: String
 });
