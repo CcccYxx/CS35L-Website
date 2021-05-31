@@ -17,6 +17,7 @@ const secret = "website-secret-string"
 app.use(express.urlencoded({ extended: false })); //parse URL-encoded bodies
 app.use(express.json()); //parse JSON bodies
 app.use(cookieParser());
+// app.use('/posts', postRoutes);
 
 mongoose.connect(uri, 
     { useUnifiedTopology: true, useNewUrlParser: true},
@@ -34,9 +35,6 @@ app.post('/api/register', function(req, res) {
     user.save(function(err) {
         if(err) {
             console.log(err);
-            res.status(401).send({
-              error: 'Email already in use'
-            });
         } else{
             res.status(200).send("You are registered!");
         }
@@ -45,6 +43,18 @@ app.post('/api/register', function(req, res) {
 
 app.get('/checkToken', withAuth, function(req, res) {
     res.sendStatus(200);
+  });
+
+app.get('/api/profile/:id', (req, res) => {
+    const id = req.params.id;
+    Profile.findById (id)
+        .then(data => {
+            console.log(data);
+            res.send(data);
+        })
+        .catch(
+            console.log("error")
+        )
   });
 
 app.put('/profile/:id', (request, response) => {
@@ -98,6 +108,7 @@ app.post('/api/authenticate', function(req, res) {
       }
     });
   });
+
 
 app.listen(8080, function() {
     console.log("Server is running on Port: 8080");

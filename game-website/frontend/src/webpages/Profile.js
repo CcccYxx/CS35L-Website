@@ -37,7 +37,7 @@ class Profile extends Component{
             .catch(e => console.log(e))
     }
 
-    handleClick = event => {
+    updatefriends () {
         for (let i = 0; i < this.state.Friendids.length; i++) {
             axios.get('/api/profile/' + this.state.Friendids[i])
                 .then(({ data}) => this.setState(update(this.state, {
@@ -49,6 +49,10 @@ class Profile extends Component{
                 })))
                 .catch(e => console.log(e))
         }
+    }
+
+    handleClick = event => {
+        this.updatefriends();
         this.setState({ editing: !this.state.editing });
         event.preventDefault();
         const newProfile = {
@@ -85,47 +89,16 @@ class Profile extends Component{
                             </form>)
                         }   
                     </div>
-                    {this.state.editing ? <button onClick={this.editingClick}>edit profile</button> :
+                    {this.state.editing ? <button onClick={this.handleClick}>edit profile</button> :
                     (<button onClick={this.handleClick}>save changes</button>)
                     }
                 </div>
                 <div className='Profile'>
                     <h1> Info</h1>
-                    {/* {this.state.editing ? 
+                    {this.state.editing ? 
                         <div>
-                            {this.state.editing ? <h4></h4> : 
-                                (<form>
-                                    <label>
-                                        change url: 
-                                        <input type='text' value = {this.state.image} onChange={this.handleChange}/>
-                                    </label>
-                                </form>)
-                            }   
-                        </div>
-                        {this.state.editing ? <button onClick={this.editingClick}>edit profile</button> :
-                        (<button onClick={this.handleClick}>save changes</button>)
-                        } */}
-                    </div>
-                    <div className='Profile'>
-                        <h1> Info</h1>
-                        {this.state.editing ? 
-                            <div>
-                                <p> Name - {this.state.Name} </p>
-                                <p> Email - {this.state.email} </p>
-                            </div>
-                            : ( 
-                            <form>
-                                <p> Name - <input type='text' value = {this.state.Name} onChange={this.nameChange}/> </p>
-                                <p> Email - <input type='text' value = {this.state.email} onChange={this.emailChange}/> </p>
-                            </form>
-                            
-                            )
-                        }
-                        <h1> Top Games</h1>
-                        <div> 
-                            {this.state.Games.map((game) => (
-                                <p>{game}</p>
-                            ))}
+                            <p> Name - {this.state.Name} </p>
+                            <p> Email - {this.state.email} </p>
                         </div>
                         : ( 
                         <form>
@@ -202,6 +175,12 @@ class Profile extends Component{
                         <input type="button" onClick={e => {
                             this.setState({ Friendids: [...this.state.Friendids, ""]})
                         }} value="Add Friend id" />
+                        <input type="button" onClick={e => {
+                            this.setState({
+                                Friendids: this.state.Friendids.splice(1),
+                                Friends: this.state.Friends.splice(1)
+                            });
+                        }} value="Delete first friend" />
                     </div>
                     )
                     }
