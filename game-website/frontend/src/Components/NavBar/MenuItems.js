@@ -27,5 +27,11 @@ export const MenuItems = [
         label: 'Profile',
         url: '/profile',
         cName: 'nav-links-noshow'
+    },
+
+    {
+        label: 'Forum',
+        url: '/forum',
+        cName: 'nav-links'
     }
 ];
