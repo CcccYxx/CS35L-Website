@@ -48,86 +48,72 @@ class Profile extends Component{
         axios.put('/profile/' + this.state.id, newProfile);
 
     }
-    
-    //Hide if user not logged in
-    // componentDidMount() {
-    //     fetch('/api/profile')
-    //     .then(res => res.text())
-    //     .then(res => this.setState({
-    //         editing: true,
-    //         Name:"",
-    //         email:"",
-    //         id:"",
-    //         friends:"",
-    //         Games: "",
-    //         image: ""
-    //     }))
-    // }
 
     render() {
-        return(
-            <div className='cols'>
-                <div className='top'>
-                    <img 
-                        border= '2px solid #555'
-                        alt='did not load'
-                        src={this.state.image}
-                        style={{width:"200px", height:"200px", borderRadius:"60px"}}
-                    />
-                    <div>
-                        {this.state.editing ? <h4></h4> : 
-                            (<form>
-                                <label>
-                                    change url: 
-                                    <input type='text' value = {this.state.image} onChange={this.handleChange}/>
-                                </label>
-                            </form>)
-                        }   
-                    </div>
-                    {this.state.editing ? <button onClick={this.editingClick}>edit profile</button> :
-                    (<button onClick={this.handleClick}>save changes</button>)
-                    }
-                </div>
-                <div className='Profile'>
-                    <h1> Info</h1>
-                    {this.state.editing ? 
+            return(
+                <div className='cols'>
+                    <div className='top'>
+                        <img 
+                            border= '2px solid #555'
+                            alt='did not load'
+                            src={this.state.image}
+                            style={{width:"200px", height:"200px", borderRadius:"60px"}}
+                        />
                         <div>
-                            <p> Name - {this.state.Name} </p>
-                            <p> Email - {this.state.email} </p>
+                            {this.state.editing ? <h4></h4> : 
+                                (<form>
+                                    <label>
+                                        change url: 
+                                        <input type='text' value = {this.state.image} onChange={this.handleChange}/>
+                                    </label>
+                                </form>)
+                            }   
                         </div>
-                        : ( 
-                        <form>
-                            <p> Name - <input type='text' value = {this.state.Name} onChange={this.nameChange}/> </p>
-                            <p> Email - <input type='text' value = {this.state.email} onChange={this.emailChange}/> </p>
-                        </form>
-                        
-                        )
-                    }
-                    <h1> Top Games</h1>
-                    <div> 
-                        {this.state.Games.map((game) => (
-                            <p>{game}</p>
+                        {this.state.editing ? <button onClick={this.editingClick}>edit profile</button> :
+                        (<button onClick={this.handleClick}>save changes</button>)
+                        }
+                    </div>
+                    <div className='Profile'>
+                        <h1> Info</h1>
+                        {this.state.editing ? 
+                            <div>
+                                <p> Name - {this.state.Name} </p>
+                                <p> Email - {this.state.email} </p>
+                            </div>
+                            : ( 
+                            <form>
+                                <p> Name - <input type='text' value = {this.state.Name} onChange={this.nameChange}/> </p>
+                                <p> Email - <input type='text' value = {this.state.email} onChange={this.emailChange}/> </p>
+                            </form>
+                            
+                            )
+                        }
+                        <h1> Top Games</h1>
+                        <div> 
+                            {this.state.Games.map((game) => (
+                                <p>{game}</p>
+                            ))}
+                        </div>
+                    </div>
+                    <div className='blogs'>
+                        <h1> Posts</h1>
+                    </div>
+                    <div className='Friends'>
+                        <h1> Friends</h1>
+                        {this.state.Friends.map((image, index) => (
+                        <p>
+                            <img 
+                                src={image}
+                                border= '1px solid #555'
+                                style={{width:"100px", height:"100px", borderRadius:"30px"}}
+                                key={index}
+                                alt="Profile"
+                            />
+                        </p>
                         ))}
                     </div>
                 </div>
-                <div className='blogs'>
-                    <h1> Posts</h1>
-                </div>
-                <div className='Friends'>
-                    <h1> Friends</h1>
-                    {this.state.Friends.map((image, index) => (
-                    <p>
-                        <img 
-                            src={image}
-                            border= '1px solid #555'
-                            style={{width:"100px", height:"100px", borderRadius:"30px"}}
-                            key={index}
-                         />
-                    </p>
-                    ))}
-                </div>
-            </div>
-        );  
+            )
     }
 };
 
