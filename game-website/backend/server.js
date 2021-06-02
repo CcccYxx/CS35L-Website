@@ -179,8 +179,7 @@ app.delete('/del/:id', (req, res) => {
 
 
 app.get('/search/user/:searchString', async (req, res) => {
-    const searchString = req.param.searchString;
-    const query = {Games: searchString}
+    const searchString = req.params.searchString;
     const projection = {
         _id: 1,
         Games: 1,
@@ -191,7 +190,7 @@ app.get('/search/user/:searchString', async (req, res) => {
         Email: 0,
     }
     try{
-        const users = await Profile.find(query)
+        const users = await Profile.find({Name: searchString})
         if (users.length > 0){
             console.log(users);
             res.status(200).json(users);
