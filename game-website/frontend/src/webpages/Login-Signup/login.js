@@ -33,8 +33,8 @@ class Login extends Component{
             this.props.handleLogin();
             alert('Successfully Logged In');
             this.props.history.push('/');
-            sessionStorage.setItem("isloggedin", "true")
-
+            sessionStorage.setItem("isloggedin", "true");
+            window.location.reload(false);
         })
         .catch(error => {
             alert('Incorrect Email/Password');
