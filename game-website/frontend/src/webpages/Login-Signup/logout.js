@@ -3,14 +3,14 @@ import { Redirect } from 'react-router-dom';
 class Logout extends Component{ 
     constructor(props) {
         super(props);
-        this.handleClick = this.handleClick.bind(this);
     }
-    handleClick() {
+    componentDidMount() {
         this.props.handleLogout();
+        window.location.reload(false)
     }
     render() {
         return(
-            <button onClick={this.handleClick}>Click to Logout</button>
+           <Redirect to='/'></Redirect>
         )
     }
 }
