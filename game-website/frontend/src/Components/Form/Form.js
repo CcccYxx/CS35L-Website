@@ -13,6 +13,7 @@ class Form extends React.Component{
             tags: "",
             selectedFile:"",
         }
+        this.inputRef = React.createRef();
     }
 
     onInputChangeCreator = (event) => {
@@ -50,7 +51,15 @@ class Form extends React.Component{
             axios.post("/forum/post", newPost)
             .then(res => {
                 if(res.status === 201){
-                    window.location.reload(false);
+                    this.setState({
+                        creator:"",
+                        title:"",
+                        message:"",
+                        tags: "",
+                        selectedFile:"",
+                    })
+                    this.inputRef.current.value=''
+                    this.props.handleSubmit()
                 }else{
                     alert("Failed to submit post.")
                 }
@@ -66,19 +75,19 @@ class Form extends React.Component{
                         <h2 id="formTitle">Make a Post</h2>
                         <label>
                             Creator 
-                            <input id="formInput" type="text" className="formInput"  required placeholder="Creator" onChange={this.onInputChangeCreator}/>
+                            <input id="formInput" type="text" className="formInput"  required placeholder="Creator" onChange={this.onInputChangeCreator} value={this.state.creator}/>
                         </label>
                         <label>
                             Title
-                            <input id="formInput" type="text" className="formInput"  required placeholder="Title" onChange={this.onInputChangeTitle} /> 
+                            <input id="formInput" type="text" className="formInput"  required placeholder="Title" onChange={this.onInputChangeTitle} value={this.state.title}/> 
                         </label>
                         <label>
                             Tags
-                            <input id="formInput" type="text" className="formInput"  required placeholder="Tags(seperated with ',')" onChange={this.onInputChangeTags} /> 
+                            <input id="formInput" type="text" className="formInput"  required placeholder="Tags(seperated with ',')" onChange={this.onInputChangeTags} value={this.state.tags}/> 
                         </label>
                         <label>
                             Messages
-                            <textarea id="message" type="text" className="formInput"  required placeholder="Write something here..." onChange={this.onInputChangeMsg}/> 
+                            <textarea id="message" type="text" className="formInput"  required placeholder="Write something here..." onChange={this.onInputChangeMsg} value={this.state.message}/> 
                         </label>
                     </form>
                 </div>
@@ -88,6 +97,7 @@ class Form extends React.Component{
                         type="file"
                         multiple={ false }
                         onDone={this.handleFileSubmit}
+                        ref={this.inputRef}
                     />
                 </div>
                 <button id="submitButton" onClick={this.handleSubmit}>SUBMIT</button>

@@ -11,6 +11,11 @@ class Forum extends React.Component{
             posts:[],
             postsCount: 0,
         }
+        this.handleSubmit=this.handleSubmit.bind(this)
+    }
+
+    handleSubmit(){
+        this.getPosts()
     }
 
     onClickDel = (event) => {
@@ -53,8 +58,8 @@ class Forum extends React.Component{
             })
 
     }
-
-    componentDidMount(){
+    
+    getPosts(){
         axios.get('/forum/get')
         .then ((res) => {
             if(res.status === 200 || res.status === 204){ // status 204: display nothing if responsed with empty json(no posts in DB)
@@ -67,6 +72,10 @@ class Forum extends React.Component{
                 alert("Failed to load posts")
             }
         })
+    }
+
+    componentDidMount(){
+        this.getPosts()
     }
 
     render(){
@@ -90,7 +99,7 @@ class Forum extends React.Component{
                     })}   
                 </div>
                 <div id="formContainer">
-                    <Form className="postForm"/>
+                    <Form handleSubmit = {this.handleSubmit} className="postForm"/>
                 </div>
             </div>
         )

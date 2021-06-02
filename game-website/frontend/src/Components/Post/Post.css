@@ -9,13 +9,21 @@
     background-color: white;
 }
 
+.creator{
+    overflow: auto;
+}
 
 .tags{
+    overflow: auto;
     padding-left: 10px;
     text-align: left;
     list-style-type: '#';
     display: grid;
     grid-template-columns: repeat(12, auto);
+}
+
+.title{
+    overflow:auto;
 }
 
 .message{
