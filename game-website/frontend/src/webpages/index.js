@@ -79,6 +79,7 @@ class Webpages extends Component {
                         // component = {Profile} 
                             render={props => (
                                 <Profile
+                                Email = "yuxi@test.xyz"
                                 {...props}
                                 isLoggedIn={this.state.isLoggedIn}
                                 />

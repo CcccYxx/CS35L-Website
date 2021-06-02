@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 
 const ProfileSchema = new mongoose.Schema({
     image: String,
+    bio: String,
     Games: [],
     Friends: [],
     Friendids: [],

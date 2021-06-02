@@ -47,7 +47,11 @@ class Login extends Component{
             email: this.state.email,
             password: this.state.password
         }
+        const newProfile = {
+            Email: this.state.email
+        }
         axios.post('/api/register', newUser)
+        axios.post('/api/profile', newProfile)
         .then((response) => {
                 alert('Successfully registered. Please Login')
         }, (error) => {

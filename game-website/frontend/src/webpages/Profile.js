@@ -9,31 +9,34 @@ class Profile extends Component{
     constructor(props) {
         super(props);
         this.state = {
+            bio: '',
             editing: true,
             Name:'',
-            email:'',
-            id:'60b3dc4ae58ae39e94b2c28e',
+            Email: props.Email,
+            id: '',
             Friendids: [],
-            Friends: [],            
+            Friends: [],
             Games: [],
             image:""
           };
     }
+
     handleChange = event => {
         this.setState({ image: event.target.value });
       };
     nameChange = event => {
         this.setState({ Name: event.target.value });
     };
-    emailChange = event => {
-        this.setState({ email: event.target.value });
+    bioChange = event => {
+        this.setState({ bio: event.target.value });
     };
+    
     editingClick = event => {
         this.setState({ editing: !this.state.editing });
     };
     componentDidMount() {
-        axios.get('/api/profile/' + this.state.id)
-            .then(({ data}) => this.setState({ Friends: data.Friends, Friendids: data.Friendids, Name: data.Name, email: data.Email, image: data.image, Games:data.Games })) // <-- set state
+        axios.get('/api/profile/email/' + this.state.Email)
+            .then(({ data}) => this.setState({ Friends: data.Friends, Friendids: data.Friendids, Name: data.Name, Email: data.Email, image: data.image, Games:data.Games, id: data.id, bio: data.bio })) 
             .catch(e => console.log(e))
     }
 
@@ -43,7 +46,13 @@ class Profile extends Component{
                 .then(({ data}) => this.setState(update(this.state, {
                     Friends: {
                         [i]: {
-                            $set: data
+                            $set: {
+                                image: data.image,
+                                bio: data.bio,
+                                Games: data.Games,
+                                Name: data.Name,
+                                Email: data.Email
+                            }
                         }
                     }
                 })))
@@ -56,15 +65,15 @@ class Profile extends Component{
         this.setState({ editing: !this.state.editing });
         event.preventDefault();
         const newProfile = {
+            bio: this.state.bio,
             image: this.state.image,
             Games: this.state.Games,
             Name: this.state.Name,
-            Email: this.state.email,
-            Friends: this.state.Friends,
+            Email: this.state.Email,
             Friendids: this.state.Friendids
         }
-        axios.put('/profile/' + this.state.id, newProfile);
-
+        axios.put('/profile/' + newProfile.Email, newProfile);
+        axios.put('/profile/' + newProfile.Email, {Friends: this.state.Friends});
     }
 
     render() {
@@ -98,12 +107,13 @@ class Profile extends Component{
                     {this.state.editing ? 
                         <div>
                             <p> Name - {this.state.Name} </p>
-                            <p> Email - {this.state.email} </p>
+                            <p> Email - {this.state.Email} </p>
+                            <p> {this.state.bio} </p>
                         </div>
                         : ( 
                         <form>
                             <p> Name - <input type='text' value = {this.state.Name} onChange={this.nameChange}/> </p>
-                            <p> Email - <input type='text' value = {this.state.email} onChange={this.emailChange}/> </p>
+                            <p> Bio - <input type='text' value = {this.state.bio} onChange={this.bioChange}/> </p>
                         </form>
                         
                         )
@@ -144,6 +154,7 @@ class Profile extends Component{
                         this.state.Friends.map((friend, index) => (
                             <div>
                                 <img 
+                                    alt="no image"
                                     src={friend.image}
                                     border= '1px solid #555'
                                     style={{width:"100px", height:"100px", borderRadius:"30px"}}
@@ -151,9 +162,10 @@ class Profile extends Component{
                                  />
                                 <p>{friend.Name}</p>
                                 <p>{friend.Email}</p>
-                                <small>Games: </small>
+                                <p>{friend.bio}</p>
+                                <medium>Games: </medium>
                                {friend.Games.map((game) =>  
-                                    <small>{game} </small>
+                                    <medium>{game} </medium>
                                 )}         
                                 <h5></h5>
                    

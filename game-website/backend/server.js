@@ -41,6 +41,19 @@ app.post('/api/register', function(req, res) {
     });
 });
 
+app.post('/api/profile', function(req, res)  {
+  const { Email } = req.body;
+  console.log("sdjfn: " + Email);
+  const profile = new Profile({ Email });
+  profile.save(function(err) {
+      if(err) {
+          console.log(err);
+      } else{
+          res.status(200).send("You are registered!");
+      }
+  });
+});
+
 app.get('/checkToken', withAuth, function(req, res) {
     res.sendStatus(200);
   });
@@ -57,9 +70,23 @@ app.get('/api/profile/:id', (req, res) => {
         )
   });
 
-app.put('/profile/:id', (request, response) => {
-    const id = request.params.id;
-    Profile.findByIdAndUpdate(id, request.body, function (err, docs) {
+  app.get('/api/profile/email/:email', (req, res) => {
+    const Email = req.params.email;
+    Profile.findOne ({Email})
+      .then(data => {
+          console.log(data);
+          res.send(data);
+      })
+      .catch( 
+          console.log("e")
+      )
+  });
+
+mongoose.set('useFindAndModify', false);
+
+app.put('/profile/:email', (req, res) => {
+    const Email = req.params.email;
+    Profile.findOneAndUpdate({Email}, req.body, (err, docs) => {
       if (err){
           console.log(err)
       }
