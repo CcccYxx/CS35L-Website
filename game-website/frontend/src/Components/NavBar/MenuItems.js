@@ -17,6 +17,13 @@ export const MenuItems = [
         cName: 'nav-links'
     },
 
+
+    {
+        label: 'Profile',
+        url: '/profile',
+        cName: 'nav-links'
+    },
+
     {
         label: 'Sign in',
         url: '/Login-Signup',
@@ -24,6 +31,7 @@ export const MenuItems = [
     },
 
     {
+<<<<<<< HEAD
         label: 'Profile',
         url: '/profile',
         cName: 'nav-links-noshow'
@@ -32,6 +40,10 @@ export const MenuItems = [
     {
         label: 'Forum',
         url: '/forum',
+=======
+        label: 'Logout',
+        url: '/logout',
+>>>>>>> backend
         cName: 'nav-links'
     }
 ];

@@ -2,9 +2,10 @@ const express = require('express');
 const mongoose = require('mongoose');
 
 const ProfileSchema = new mongoose.Schema({
-    id: String,
     image: String,
     Games: [],
+    Friends: [],
+    Friendids: [],
     Name: String,
     Email: String
 });

@@ -1,39 +1,37 @@
-body{
-    background-color: white;
 
-}
 .cols{
     display: flex;
+    text-align: center;
     flex-direction: row;
-    font-family: 'Comic Sans';
     margin-top: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
     justify-content: space-around;
-    color: rgb(85, 85, 85);
+    color: black;
 }
 
 .top{
+    border: 5px solid #DFD297;
+    column-width: 400px;
     border-radius: 15px;
-    border: 2px solid #000000;
+}
+
+.image{
+    margin-top: 30px;
 }
 
 .Profile{
+    font-family: 'Courier New', Helvetica, sans-serif;
+    margin-left: 20px;
+    column-width: 400px;
     border-radius: 15px;
-    border: 2px solid #000000;
-}
-
-.blogs{
-    column-width: 250px;
-    border-radius: 15px;
-    border: 2px solid #000000;
-}
-.chats{
-    column-width: 250px;
-    border-radius: 15px;
-    border: 2px solid #000000;
+    border: 5px solid #DFD297;
 }
 
 .Friends{
-    column-width: 250px;
+    font-family: 'Courier New', Helvetica, sans-serif;
+    margin-left: 20px;
+    column-width: 400px;
     border-radius: 15px;
-    border: 2px solid #000000;
+    border: 5px solid #DFD297;
 }
