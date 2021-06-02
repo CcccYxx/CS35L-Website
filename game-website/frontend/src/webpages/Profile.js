@@ -165,7 +165,7 @@ class Profile extends Component{
                                 <p>{friend.bio}</p>
                                 <medium>Games: </medium>
                                {friend.Games.map((game) =>  
-                                    <medium>{game} </medium>
+                                    <medium> {game} </medium>
                                 )}         
                                 <h5></h5>
                    

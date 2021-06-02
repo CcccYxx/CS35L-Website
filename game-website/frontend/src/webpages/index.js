@@ -16,7 +16,8 @@ class Webpages extends Component {
         super(props);
 
         this.state = {
-            isLoggedIn: false
+            isLoggedIn: false,
+            Email: "benjamingoldblatt88@gmail.com"
         };
 
         this.handleLogin = this.handleLogin.bind(this);
@@ -42,8 +43,14 @@ class Webpages extends Component {
         }
     }
 
+    getEmail() {
+        let email = sessionStorage.getItem("email");
+        this.setState({Email: email})
+    }
+
     componentDidMount() {
         this.checkLoginStatus();
+        this.getEmail();
     }
 
     handleLogin() {
@@ -79,7 +86,7 @@ class Webpages extends Component {
                         // component = {Profile} 
                             render={props => (
                                 <Profile
-                                Email = "yuxi@test.xyz"
+                                Email = {this.state.Email}
                                 {...props}
                                 isLoggedIn={this.state.isLoggedIn}
                                 />
