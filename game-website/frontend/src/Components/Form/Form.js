@@ -13,7 +13,6 @@ class Form extends React.Component{
             tags: "",
             selectedFile:"",
         }
-        this.inputRef = React.createRef();
     }
 
     onInputChangeCreator = (event) => {
@@ -58,7 +57,6 @@ class Form extends React.Component{
                         tags: "",
                         selectedFile:"",
                     })
-                    this.inputRef.current.value=''
                     this.props.handleSubmit()
                 }else{
                     alert("Failed to submit post.")
@@ -97,7 +95,6 @@ class Form extends React.Component{
                         type="file"
                         multiple={ false }
                         onDone={this.handleFileSubmit}
-                        ref={this.inputRef}
                     />
                 </div>
                 <button id="submitButton" onClick={this.handleSubmit}>SUBMIT</button>
