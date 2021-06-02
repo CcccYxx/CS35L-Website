@@ -113,6 +113,34 @@ app.delete('/del/:id', (req, res) => {
     });
 })
 
+
+app.get('/search/user/:searchString', async (req, res) => {
+    const searchString = req.param.searchString;
+    const query = {Games: searchString}
+    const projection = {
+        _id: 1,
+        Games: 1,
+        Name: 1,
+        image: 1,
+        Friendids: 0,
+        Friends: 0,
+        Email: 0,
+    }
+    try{
+        const users = await Profile.find(query).project(projection).limit(10)
+        if (users.length > 0){
+            console.log(users);
+            res.status(200).json(users);
+        }else{
+            console.log("No users found");
+            res.status(204).json({message: "No valid user found"});
+        }
+    }catch(err){
+        res.status(404).json({error: err})
+    }
+
+})
+
 app.listen(8080, function() {
     console.log("Server is running on Port: 8080");
   });
