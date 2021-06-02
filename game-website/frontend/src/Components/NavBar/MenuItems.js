@@ -31,19 +31,14 @@ export const MenuItems = [
     },
 
     {
-<<<<<<< HEAD
-        label: 'Profile',
-        url: '/profile',
-        cName: 'nav-links-noshow'
+        label: 'Forum',
+        url: '/forum',
+        cName: 'nav-links'
     },
 
     {
-        label: 'Forum',
-        url: '/forum',
-=======
         label: 'Logout',
         url: '/logout',
->>>>>>> backend
         cName: 'nav-links'
     }
 ];

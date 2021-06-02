@@ -29,7 +29,7 @@ class NavBar extends Component{
                         {MenuItems.map((item, index) => {
                             return (
                                 <li key={index}>
-                                    <a className={item.label === 'Logout' || item.label === 'Profile'? "nav-links-noshow": item.cName} href={item.url}>
+                                    <a className={item.label === 'Logout' || item.label === 'Profile' || item.label === 'Forum' ? "nav-links-noshow": item.cName} href={item.url}>
                                     {item.label}
                                     </a>
                                 </li>

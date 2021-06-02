@@ -1,6 +1,5 @@
 const express = require("express");
 const mongoose = require('mongoose');
-const getPosts = require("./controllers/posts");
 const postMessage = require("./models/postMessage");
 const Profile = require("./models/profile");
 const User = require("./user"); 
@@ -192,7 +191,7 @@ app.get('/search/user/:searchString', async (req, res) => {
         Email: 0,
     }
     try{
-        const users = await Profile.find(query).project(projection).limit(10)
+        const users = await Profile.find(query)
         if (users.length > 0){
             console.log(users);
             res.status(200).json(users);

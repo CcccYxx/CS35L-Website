@@ -9,29 +9,8 @@ import News from './News'
 import BrowseGames from './BrowseGames'
 import Login from './Login-Signup/login'
 import Profile from './Profile'
-<<<<<<< HEAD
-import Forum from './Forum'
-
-/*
-TO DO:
-import other webpages
-*/
-
-
-const Webpages = () => {
-    return(
-        //To Do: Add path to other pages 
-        <Router>
-            <Route exact path="/" component = {Home} /> 
-            <Route path="/news" component = {News} />
-            <Route path="/browse-games" component = {BrowseGames} />
-            <Route path='/Login-Signup' component = {login} />
-            <Route path='/profile' component = {Profile}/>
-            <Route path='/forum' component = {Forum} />
-        </Router>
-    );
-=======
 import Logout from './Login-Signup/logout'
+import Forum from './Forum'
 
 class Webpages extends Component {
     constructor(props){
@@ -106,6 +85,15 @@ class Webpages extends Component {
                                 />
                             )}
                         />
+                        <Route path='/forum' 
+                        // component = {Profile} 
+                            render={props => (
+                                <Forum
+                                {...props}
+                                isLoggedIn={this.state.isLoggedIn}
+                                />
+                            )}
+                        />
                     </Switch>
                 </Router>
             );
@@ -131,7 +119,6 @@ class Webpages extends Component {
             );
         }
 }
->>>>>>> backend
 };
 
 export default Webpages;
