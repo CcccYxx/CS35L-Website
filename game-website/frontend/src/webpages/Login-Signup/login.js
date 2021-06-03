@@ -33,8 +33,8 @@ class Login extends Component{
             this.props.handleLogin();
             alert('Successfully Logged In');
             this.props.history.push('/');
-            sessionStorage.setItem("isloggedin", "true");
-            window.location.reload(false);
+            sessionStorage.setItem("isloggedin", "true")
+            sessionStorage.setItem("email", this.state.email)
         })
         .catch(error => {
             alert('Incorrect Email/Password');
@@ -47,7 +47,11 @@ class Login extends Component{
             email: this.state.email,
             password: this.state.password
         }
+        const newProfile = {
+            Email: this.state.email
+        }
         axios.post('/api/register', newUser)
+        axios.post('/api/profile', newProfile)
         .then((response) => {
                 alert('Successfully registered. Please Login')
         }, (error) => {
