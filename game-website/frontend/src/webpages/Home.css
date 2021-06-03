@@ -28,7 +28,7 @@
 
 .searchbar_container{
     position: absolute;
-    top: 5%;
+    top: 80px;
     left: 30%;
     transform: translate(-50% -50%);
 }
@@ -58,9 +58,27 @@
 }
 
 .searchResultContainer{
+    margin-top: 50px;
     display: flex;
 }
 
+.searchNoResult{
+    font-size: 2rem;
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#noResultHead{
+    font-size: 90pt;
+    color: rgb(198, 148, 255);
+    margin-left: 30%;
+}
+
+#noResultBody{
+    color: rgb(151, 196, 255);
+}
 
 
 .hide{

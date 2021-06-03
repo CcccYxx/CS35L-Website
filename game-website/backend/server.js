@@ -165,7 +165,7 @@ app.post('/forum/post', (req, res) => {
 
 app.get('/forum/get', async (req, res) => {
     try{
-        const posts = await postMessage.find().limit(20);
+        const posts = await postMessage.find();
         if(posts.length >= 0){
             res.status(200).json(posts);
         }else{
@@ -222,7 +222,7 @@ app.get('/search/user/:searchString', async (req, res) => {
             {Name: new RegExp('.*' + searchString + '.*', 'i')},
             {bio: new RegExp('.*' + searchString + '.*', 'i')}, 
             {Email: searchString}, {id: searchString}
-        ]})
+        ]}).limit(20)
         if (users.length > 0){
             console.log(users);
             res.status(200).json(users);
@@ -243,7 +243,7 @@ app.get('/search/post/:searchString', async (req, res) => {
             {title: new RegExp('.*' + searchString + '.*', 'i')},
             {tags: new RegExp('.*' + searchString + '.*', 'i')},
             {message: new RegExp('.*' + searchString + '.*', 'i')},
-        ]})
+        ]}).limit(20)
         if(posts.length > 0){
             console.log(posts);
             res.status(200).json(posts);
