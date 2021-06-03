@@ -190,7 +190,12 @@ app.get('/search/user/:searchString', async (req, res) => {
         Email: 0,
     }
     try{
-        const users = await Profile.find({Name: searchString})
+        const users = await Profile.find({$or: [
+            {Games: new RegExp('.*' + searchString + '.*', 'i')}, 
+            {Name: new RegExp('.*' + searchString + '.*', 'i')},
+            {bio: new RegExp('.*' + searchString + '.*', 'i')}, 
+            {Email: searchString}, {id: searchString}
+        ]})
         if (users.length > 0){
             console.log(users);
             res.status(200).json(users);
@@ -201,7 +206,27 @@ app.get('/search/user/:searchString', async (req, res) => {
     }catch(err){
         res.status(404).json({error: err})
     }
+})
 
+app.get('/search/post/:searchString', async (req, res) => {
+    const searchString = req.params.searchString;
+    try{
+        const posts = await postMessage.find({$or: [
+            {creator: new RegExp('.*' + searchString + '.*', 'i')},
+            {title: new RegExp('.*' + searchString + '.*', 'i')},
+            {tags: new RegExp('.*' + searchString + '.*', 'i')},
+            {message: new RegExp('.*' + searchString + '.*', 'i')},
+        ]})
+        if(posts.length > 0){
+            console.log(posts);
+            res.status(200).json(posts);
+        }else{
+            console.log("No posts found");
+            res.status(204).json({message: "No relevant posts found"})
+        }
+    }catch(err){
+        res.status(404).json({error: err});
+    }
 })
 
 app.listen(8080, function() {

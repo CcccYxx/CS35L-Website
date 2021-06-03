@@ -25,12 +25,12 @@ const Post = ({title, message, creator, tags, selectedFile, likeCount, date, onC
             </div>
             <div className="postFooter">
                 <div className="likeContainer">
-                    <button value={i} className="likeButton" onClick={onClickLike}>
+                    <button value={i} className={onClickLike === null ? "likeButtonNotAllow" : "likeButton"} onClick={onClickLike}>
                     </button>
                     <p className="likeCount">{likeCount}</p>
                 </div>
                 <div className="delContainer">
-                    <button value={i} className="delButton" onClick={onClickDel}>
+                    <button value={i} className={onClickDel === null ? "delButtonNotAllow":"delButton"} onClick={onClickDel}>
                     </button>
                 </div>
             </div>

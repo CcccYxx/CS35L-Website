@@ -8,6 +8,9 @@ class Home extends React.Component{
         super(props);
         this.state={
             searchString: "",
+            posts: [],
+            users: [],
+            displaySearchResult: false
         };
     }
 
@@ -18,10 +21,28 @@ class Home extends React.Component{
     }
 
     handleSearchStringChange(event){
-        if(event.charCode === 13){
+        if(event.charCode === 13 && event.target.value){
             axios.get('/search/user/' + this.state.searchString)
             .then((res) => {
-                console.log(res.data);
+                if(res.status === 200){
+                    this.setState({
+                        users: res.data,
+                        displaySearchResult: true
+                    })
+                }else if(res.status === 404){
+                    alert('Error when searching')
+                }
+            })
+            axios.get('/search/post/' + this.state.searchString)
+            .then((res) => {
+                if(res.status === 200){
+                    this.setState({
+                        posts: res.data,
+                        displaySearchResult: true
+                    })
+                }else if(res.status === 404){
+                    alert('Error when searching')
+                }
             })
         }
     }
@@ -29,10 +50,13 @@ class Home extends React.Component{
     render(){
         return(
             <div className='welcome'>
-                <div className='welcome-msg'> Welcome to Game-Website </div>
-                <div className="searchbar_container">
-                    <input type="text" className="searchbar" placeholder="Search for posts or people..." maxLength="40"
-                     onChange={this.handleChange.bind(this)} onKeyPress={this.handleSearchStringChange.bind(this)}/>
+                <div className="homePageContainer">
+                    <div className={this.state.displaySearchResult ? 'hide' : 'welcome-msg'}> Welcome to Game-Website </div>
+                    <div className="searchbar_container">
+                        <input type="text" className="searchbar" placeholder="Search for posts or people..." maxLength="40"
+                        onChange={this.handleChange.bind(this)} onKeyPress={this.handleSearchStringChange.bind(this)}/>
+                    </div>
+
                 </div>
             </div>
         );  
