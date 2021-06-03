@@ -9,6 +9,7 @@ class Profile extends Component{
     constructor(props) {
         super(props);
         this.state = {
+            people: [],
             bio: '',
             editing: true,
             Name:'',
@@ -52,6 +53,7 @@ class Profile extends Component{
 
         const newProfile = {
             bio: this.state.bio,
+            people: this.state.people,
             image: this.state.image,
             Games: this.state.Games,
             Name: this.state.Name,
@@ -64,8 +66,10 @@ class Profile extends Component{
 
     componentDidMount() {
         axios.get('/api/profile/email/' + this.state.Email)
-            .then(({ data}) => this.setState({ Friends: data.Friends, Friendids: data.Friendids, Name: data.Name, image: data.image, Games: data.Games, bio: data.bio })) 
+            .then(({ data}) => this.setState({ Friends: data.Friends, people: data.people, Friendids: data.Friendids, Name: data.Name, image: data.image, Games: data.Games, bio: data.bio })) 
             .catch(e => console.log(e))
+        axios.get('/profiles')
+            .then(({data}) => this.setState({people: data}))
     }
   
 
@@ -176,7 +180,8 @@ class Profile extends Component{
                                         }
                                     }
                                 }));
-                            }}/>))}
+                            }}/>
+                        ))}
                         <input type="button" onClick={e => {
                             this.setState({ Friendids: [...this.state.Friendids, ""]})
                         }} value="Add Friend" />
@@ -186,6 +191,18 @@ class Profile extends Component{
                                 Friends: this.state.Friends.splice(1)
                             });
                         }} value="Delete first friend" />
+                        <div>
+                            <h1>People: </h1>
+                            {this.state.people.map((person) => (
+                                <div>
+                                    <medium>EMAIL: {person.Email} </medium>
+                                    <medium>GAMES: </medium>
+                                    {person.Games.map((game) =>  
+                                        <medium> {game} </medium>
+                                    )}    
+                                </div>
+                                ))}
+                        </div>
                     </div>
                     )
                     }

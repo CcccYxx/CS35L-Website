@@ -58,7 +58,7 @@ app.get('/checkToken', withAuth, function(req, res) {
     res.sendStatus(200);
   });
 
-  app.get('/api/profile/email/:email', (req, res) => {
+app.get('/api/profile/email/:email', (req, res) => {
     const Email = req.params.email;
     Profile.findOne ({Email})
       .then(data => {
@@ -66,7 +66,18 @@ app.get('/checkToken', withAuth, function(req, res) {
       })
       .catch( e => {console.log(e)}
       )
-  });
+});
+
+app.get('/profiles', (req , res) => {
+    Profile.find ({}, {_id: 0, Email: 1, Games: 1})
+        .then(data => {
+            res.send(data);
+        })
+        .catch(e => {
+            console.log(e);
+        })
+});
+   
 
 mongoose.set('useFindAndModify', false);
 
