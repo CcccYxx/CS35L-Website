@@ -64,14 +64,14 @@ class BrowseGames extends React.Component {
                   <table>
                     <tr>
                       <td>
-                        <img src={coverURL} height='300' width='300'/>                  
+                        <img className="game_image" src={coverURL} height='300' width='300'/>                  
                       </td>
                       <td>
                         <h2>{name}</h2>
-                        <p>Rating: {rating}</p>
-                        <p>Released date: {date}</p>
-                        <p>Summmary: {summary}</p>
-                        <p>
+                        <p className="game_info">Rating: {rating}</p>
+                        <p className="game_info">Released date: {date}</p>
+                        <p className="game_info">Summmary: {summary}</p>
+                        <p className="game_info">
                           Credited to:
                           <a href={url}> IDGB</a>
                         </p>
