@@ -1,15 +1,4 @@
-.forumPageContainer{
-    display: flex;
-    background: rgb(255,255,255);
-    background: linear-gradient(209deg, rgba(255,255,255,1) 0%, rgba(148,187,233,1) 100%);
-    width: 100vw;
-}
 
-#formContainer{
-    
-    position: fixed;
-    margin-left: 70%;
-}
 
 .newsPage{
     font-family: Mulish, sans-serif;
@@ -45,5 +34,4 @@
 
 body{
     background-color: white;
-
 }
