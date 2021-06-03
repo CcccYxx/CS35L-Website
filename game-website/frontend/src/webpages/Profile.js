@@ -9,6 +9,7 @@ class Profile extends Component{
     constructor(props) {
         super(props);
         this.state = {
+            render: false,
             people: [],
             bio: '',
             editing: true,
@@ -30,6 +31,7 @@ class Profile extends Component{
     bioChange = event => {
         this.setState({ bio: event.target.value });
     };
+
 
     updatefriends () {
         for (let i = 0; i < this.state.Friendids.length; i++) {
@@ -70,10 +72,13 @@ class Profile extends Component{
             .catch(e => console.log(e))
         axios.get('/profiles')
             .then(({data}) => this.setState({people: data}))
+        setTimeout(function() { //Start the timer
+            this.setState({render: true}) //After 1 second, set render to true
+        }.bind(this), 600)
     }
-  
 
     render() {
+        if (!this.state.Name && !this.state.image && !this.state.render) {return (<div></div>)}
         return(
             <div className='cols'>
                 <div className='top'>
