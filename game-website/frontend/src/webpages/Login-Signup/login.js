@@ -35,6 +35,7 @@ class Login extends Component{
             this.props.history.push('/');
             sessionStorage.setItem("isloggedin", "true")
             sessionStorage.setItem("email", this.state.email)
+            window.location.reload(false)
         })
         .catch(error => {
             alert('Incorrect Email/Password');
