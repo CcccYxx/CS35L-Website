@@ -192,13 +192,12 @@ class Profile extends Component{
                             });
                         }} value="Delete first friend" />
                         <div>
-                            <h1>People: </h1>
+                            <h1>All Users </h1>
                             {this.state.people.map((person) => (
                                 <div>
-                                    <medium>EMAIL: {person.Email} </medium>
-                                    <medium>GAMES: </medium>
+                                    <h4>{person.Email}</h4>
                                     {person.Games.map((game) =>  
-                                        <medium> {game} </medium>
+                                        <medium> {game}, </medium>
                                     )}    
                                 </div>
                                 ))}
