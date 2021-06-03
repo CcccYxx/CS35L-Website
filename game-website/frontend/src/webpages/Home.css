@@ -16,10 +16,19 @@
     height: 100vh;
 }
 
+.welcomeSearch{
+    display: flex;
+    font-family: 'Mulish', sans-serif;
+    background: rgb(255,255,255);
+    background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(219,201,255,1) 100%);
+    width: 100vw;
+    min-height: 100vh;
+}
+
 
 .searchbar_container{
     position: absolute;
-    top: 10%;
+    top: 5%;
     left: 30%;
     transform: translate(-50% -50%);
 }
@@ -47,6 +56,12 @@
     background-color: rgb(250, 235, 253);
     transition: all ease-in-out 0.2s;
 }
+
+.searchResultContainer{
+    display: flex;
+}
+
+
 
 .hide{
     display: none;
