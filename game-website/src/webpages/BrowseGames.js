@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import './BrowseGames.css';
-import Select from 'react-select'
+import Select from 'react-select';
 
 class BrowseGames extends React.Component {
     constructor() {
       super();
-      this.state = {  constraints: 'fields name, summary, url; limit 10; where platforms = 6;',
-                      data: []
+      this.state = {constraints: 'fields name, summary, cover, rating, url, first_release_date; limit 10; where platforms = 6 & cover != null & rating != null;',
+                    data: [],
+                    coverURLs: []
       }
     }
 
@@ -28,8 +29,8 @@ class BrowseGames extends React.Component {
             options={options}
             onChange={(e) => {
               this.setState({
-                constraints: 'fields name, summary, url; limit 10; where platforms = ' + e.value + ';'
-              })
+                constraints: 'fields name, summary, cover, rating, url, first_release_date; limit 10; where platforms = ' + e.value + ' & cover != null & rating != null;'
+              });
               this.componentDidMount();
             }}
           />
@@ -41,27 +42,43 @@ class BrowseGames extends React.Component {
       const gameData = this.state.data;
       var name;
       var summary;
+      var coverURL;
+      var rating;
       var url;
-      var platforms;
-      var cover;
-      var genre;
-  
+      var date;
+
       return (
         <div>
             {gameData.map((item) => {
               name = item.name;
               summary = item.summary;
+              coverURL = item.coverURL;
+              rating = item.rating;
               url = item.url;
-              platforms = item.platforms;
-              cover = item.cover;
-              genre = item.genre;
-  
+              date = item.first_release_date;
+              date = new Date(date * 1000);
+              date = date.toLocaleDateString()
+
               return (
-                <ul>
-                  <li>{name}</li>
-                  <li>{summary}</li>
-                  <li>{url}</li>
-                </ul>
+                <div className='one_game'>
+                  <table>
+                    <tr>
+                      <td>
+                        <img src={coverURL} height='300' width='300'/>                  
+                      </td>
+                      <td>
+                        <h2>{name}</h2>
+                        <p>Rating: {rating}</p>
+                        <p>Released date: {date}</p>
+                        <p>Summmary: {summary}</p>
+                        <p>
+                          Credited to:
+                          <a href={url}> IDGB</a>
+                        </p>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
               );
             })}
         </div>
@@ -73,33 +90,63 @@ class BrowseGames extends React.Component {
       const response1 = await fetch(tokenAddress, {method: 'POST'});
       const obj1 = await response1.json();
       const token = obj1.access_token;
-      //console.log(token);
   
-      //var bearer = 'Bearer ' + token;          // Use this instead to get a new token every time
-      var bearer = 'Bearer 6m6d2bqdwq0okay5pnqiapc6ydkkgk'; // Bearer token
-                                                            // This token is set during testing to prevent too many request.
-                                                            // Remember to replace the token when you test
-                                                            // One token will expire in around 6 days
+      const bearer = 'Bearer ' + token;          // Use this instead to get a new token every time
       const authenticationInfo = {
         'Client-ID': 'xmj854p8ubogtijgavxucipsk4l0ww',
         'Authorization': bearer
-      }
+      };
 
       const dataAddress = 'https://cors-anywhere.herokuapp.com/https://api.igdb.com/v4/games'; // Create a proxy to get around CORS
       const response2 = await fetch(dataAddress, {
         method: 'POST',
         headers: authenticationInfo,
-        body: this.state.constraints, // This means get all information from 10 games
+        body: this.state.constraints,
       });
       const obj2 = await response2.json();
       this.setState({data: obj2});
+
+      const coverAddress = 'https://cors-anywhere.herokuapp.com/https://api.igdb.com/v4/covers';
+      //Get an array of cover ids of the games
+      var coverIDs = [];
+      for (var i = 0; i < this.state.data.length; i++) {
+        coverIDs.push(this.state.data[i].cover);
+      }
+
+      //Create a cover constraints to get url for the covers
+      var coverConstraints = '(';
+      for (var i = 0; i < (coverIDs.length - 1); i++) {
+        coverConstraints += coverIDs[i] + ', ';
+      }
+      coverConstraints += coverIDs[coverIDs.length - 1] + ')';
+
+      const response3 = await fetch(coverAddress, {
+        method: 'POST',
+        headers: authenticationInfo,
+        body: 'fields url; where id = ' + coverConstraints + ';'
+      });
+      const obj3 = await response3.json();
+      this.setState({coverURLs: obj3})
+
+      const gameData = this.state.data;
+      const coverData = this.state.coverURLs;
+      for (var i = 0; i < gameData.length; i++) {
+        for (var j = 0; j < coverData.length; j++) {
+          if (gameData[i].cover == coverData[j].id) {
+            gameData[i].coverURL = coverData[j].url;
+          }
+        }
+      }
+      this.setState({data: gameData});
+
+      console.log(this.state.data)
     }
     
     render() {
       return (
         <div>
-          {this.displayPlatformsSelect()}
-          {this.displayData()}
+            {this.displayPlatformsSelect()}
+            {this.displayData()}
         </div>
       );
     }
