@@ -10,6 +10,7 @@ import BrowseGames from './BrowseGames'
 import Login from './Login-Signup/login'
 import Profile from './Profile'
 import Logout from './Login-Signup/logout'
+import Forum from './Forum'
 
 class Webpages extends Component {
     constructor(props){
@@ -87,6 +88,15 @@ class Webpages extends Component {
                             render={props => (
                                 <Profile
                                 Email = {this.state.Email}
+                                {...props}
+                                isLoggedIn={this.state.isLoggedIn}
+                                />
+                            )}
+                        />
+                        <Route path='/forum' 
+                        // component = {Profile} 
+                            render={props => (
+                                <Forum
                                 {...props}
                                 isLoggedIn={this.state.isLoggedIn}
                                 />
