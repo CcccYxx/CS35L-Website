@@ -13,7 +13,6 @@ class Profile extends Component{
             editing: true,
             Name:'',
             Email: props.Email,
-            id: '',
             Friendids: [],
             Friends: [],
             Games: [],
@@ -30,51 +29,45 @@ class Profile extends Component{
     bioChange = event => {
         this.setState({ bio: event.target.value });
     };
-    
-    editingClick = event => {
-        this.setState({ editing: !this.state.editing });
-    };
-    componentDidMount() {
-        axios.get('/api/profile/email/' + this.state.Email)
-            .then(({ data}) => this.setState({ Friends: data.Friends, Friendids: data.Friendids, Name: data.Name, Email: data.Email, image: data.image, Games:data.Games, id: data.id, bio: data.bio })) 
-            .catch(e => console.log(e))
-    }
 
     updatefriends () {
         for (let i = 0; i < this.state.Friendids.length; i++) {
-            axios.get('/api/profile/' + this.state.Friendids[i])
+            axios.get('/api/profile/email/' + this.state.Friendids[i])
                 .then(({ data}) => this.setState(update(this.state, {
                     Friends: {
                         [i]: {
-                            $set: {
-                                image: data.image,
-                                bio: data.bio,
-                                Games: data.Games,
-                                Name: data.Name,
-                                Email: data.Email
-                            }
+                            $set: data
                         }
                     }
                 })))
                 .catch(e => console.log(e))
         }
     }
-
-    handleClick = event => {
-        this.updatefriends();
+    editingClick = event => {
         this.setState({ editing: !this.state.editing });
-        event.preventDefault();
+    }
+    saveClick = event => {
+        this.setState({ editing: !this.state.editing });
+        this.updatefriends();
+
         const newProfile = {
             bio: this.state.bio,
             image: this.state.image,
             Games: this.state.Games,
             Name: this.state.Name,
             Email: this.state.Email,
-            Friendids: this.state.Friendids
+            Friendids: this.state.Friendids,
+            Friends: this.state.Friends
         }
         axios.put('/profile/' + newProfile.Email, newProfile);
-        axios.put('/profile/' + newProfile.Email, {Friends: this.state.Friends});
     }
+
+    componentDidMount() {
+        axios.get('/api/profile/email/' + this.state.Email)
+            .then(({ data}) => this.setState({ Friends: data.Friends, Friendids: data.Friendids, Name: data.Name, image: data.image, Games: data.Games, bio: data.bio })) 
+            .catch(e => console.log(e))
+    }
+  
 
     render() {
         return(
@@ -98,8 +91,8 @@ class Profile extends Component{
                             </form>)
                         }   
                     </div>
-                    {this.state.editing ? <button onClick={this.handleClick}>edit profile</button> :
-                    (<button onClick={this.handleClick}>save changes</button>)
+                    {this.state.editing ? <button onClick={this.editingClick}>edit profile</button> :
+                    (<button onClick={this.saveClick}>save changes</button>)
                     }
                 </div>
                 <div className='Profile'>
@@ -186,7 +179,7 @@ class Profile extends Component{
                             }}/>))}
                         <input type="button" onClick={e => {
                             this.setState({ Friendids: [...this.state.Friendids, ""]})
-                        }} value="Add Friend id" />
+                        }} value="Add Friend" />
                         <input type="button" onClick={e => {
                             this.setState({
                                 Friendids: this.state.Friendids.splice(1),

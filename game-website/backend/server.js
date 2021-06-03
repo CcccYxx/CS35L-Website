@@ -58,27 +58,13 @@ app.get('/checkToken', withAuth, function(req, res) {
     res.sendStatus(200);
   });
 
-app.get('/api/profile/:id', (req, res) => {
-    const id = req.params.id;
-    Profile.findById (id)
-        .then(data => {
-            console.log(data);
-            res.send(data);
-        })
-        .catch(
-            console.log("error")
-        )
-  });
-
   app.get('/api/profile/email/:email', (req, res) => {
     const Email = req.params.email;
     Profile.findOne ({Email})
       .then(data => {
-          console.log(data);
           res.send(data);
       })
-      .catch( 
-          console.log("e")
+      .catch( e => {console.log(e)}
       )
   });
 
@@ -86,7 +72,7 @@ mongoose.set('useFindAndModify', false);
 
 app.put('/profile/:email', (req, res) => {
     const Email = req.params.email;
-    Profile.findOneAndUpdate({Email}, req.body, (err, docs) => {
+    Profile.findOneAndUpdate({Email: Email}, req.body, (err, docs) => {
       if (err){
           console.log(err)
       }
