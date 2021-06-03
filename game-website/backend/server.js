@@ -83,6 +83,16 @@ app.get('/api/profile/:id', (req, res) => {
       )
   });
 
+app.get('/profiles', (req , res) => {
+    Profile.find ({}, {_id: 0, Email: 1, Games: 1})
+        .then(data => {
+            res.send(data);
+        })
+        .catch(e => {
+            console.log(e);
+        })
+});
+
 mongoose.set('useFindAndModify', false);
 
 app.put('/profile/:email', (req, res) => {
