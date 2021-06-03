@@ -8,11 +8,9 @@
     "@testing-library/jest-dom": "^5.12.0",
     "@testing-library/react": "^11.2.6",
     "@testing-library/user-event": "^12.8.3",
-<<<<<<< HEAD:game-website/package.json
     "apicalypse": "^0.1.9",
     "react": "^17.0.2",
     "react-choices": "^0.5.1",
-=======
     "axios": "^0.21.1",
     "bootstrap": "^5.0.1",
     "express": "^4.17.1",
@@ -21,18 +19,14 @@
     "moment": "^2.29.1",
     "react": "^17.0.2",
     "react-addons-update": "^15.6.3",
->>>>>>> e0ca8fff90b8fcae552e99fd46bf818da2154513:game-website/frontend/package.json
     "react-dom": "^17.0.2",
     "react-file-base64": "^1.0.3",
     "react-router-dom": "^5.2.0",
-<<<<<<< HEAD:game-website/package.json
     "react-scripts": "4.0.3",
     "react-select": "^4.3.1",
-=======
     "react-scripts": "^4.0.3",
     "redux": "^4.1.0",
     "redux-thunk": "^2.3.0",
->>>>>>> e0ca8fff90b8fcae552e99fd46bf818da2154513:game-website/frontend/package.json
     "web-vitals": "^1.1.2"
   },
   "scripts": {
