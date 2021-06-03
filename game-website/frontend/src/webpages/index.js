@@ -10,14 +10,14 @@ import BrowseGames from './BrowseGames'
 import Login from './Login-Signup/login'
 import Profile from './Profile'
 import Logout from './Login-Signup/logout'
-import Forum from './Forum'
 
 class Webpages extends Component {
     constructor(props){
         super(props);
 
         this.state = {
-            isLoggedIn: false
+            isLoggedIn: false,
+            Email: "benjamingoldblatt88@gmail.com"
         };
 
         this.handleLogin = this.handleLogin.bind(this);
@@ -43,8 +43,14 @@ class Webpages extends Component {
         }
     }
 
+    getEmail() {
+        let email = sessionStorage.getItem("email");
+        this.setState({Email: email})
+    }
+
     componentDidMount() {
         this.checkLoginStatus();
+        this.getEmail();
     }
 
     handleLogin() {
@@ -80,15 +86,7 @@ class Webpages extends Component {
                         // component = {Profile} 
                             render={props => (
                                 <Profile
-                                {...props}
-                                isLoggedIn={this.state.isLoggedIn}
-                                />
-                            )}
-                        />
-                        <Route path='/forum' 
-                        // component = {Profile} 
-                            render={props => (
-                                <Forum
+                                Email = {this.state.Email}
                                 {...props}
                                 isLoggedIn={this.state.isLoggedIn}
                                 />
