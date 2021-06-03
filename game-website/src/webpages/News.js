@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import './News.css';
 import {Link} from 'react-router-dom'
 const newsJson = require("../assets/news.json");
@@ -29,8 +28,8 @@ class News extends React.Component{
             return( //return list for now, can change those if needed 
                 <ul class="newlist">
                     <li className="newsBlock" key={items.title} >
-                        <h2 className="title"><Link to={{pathname:items.link}} target="_blank">{items.title}</Link></h2>
-                        <p className="author-publisher">Author: {items.author} Publisher: {items.publisher}</p>
+                        <h2 className="title"><Link to={{pathname:items.link}} target="_blank" className="link">{items.title}</Link></h2>
+                        <p className="author-publisher">{items.author}, {items.publisher}</p>
                     </li>
                 </ul>
             )
