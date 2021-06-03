@@ -1,3 +1,28 @@
 .newsPage{
     font-family: Mulish, sans-serif;
+    background: rgb(255,255,255);
+    background: linear-gradient(209deg, rgba(255,255,255,1) 0%, rgba(148,187,233,1) 100%);
+}
+
+.newsBlock{
+    background-color: white;
+}
+
+.newlist{
+    list-style-type: none;
+}
+
+.title{
+    padding-left: 30px;
+    padding-top: 10px;
+}
+
+.author-publisher{
+    padding-left: 30px;
+    padding-bottom: 10px;
+}
+
+body{
+    background-color: white;
+
 }

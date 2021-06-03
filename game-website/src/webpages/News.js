@@ -27,13 +27,12 @@ class News extends React.Component{
     render(){
         const news = myItems.map((items) => {
             return( //return list for now, can change those if needed 
-                <li key={items.title}>
-                    <h2 className="title"><Link to={{pathname:items.link}} target="_blank">{items.title}</Link></h2>
-                    <p className="author">Author: {items.author}</p>
-                    <p className="publisher">Publisher: {items.publisher}</p>
-                    <p className="Date">Date: {items.date}</p>
-                    <p className='link'>Source: {items.link}</p>
-                </li>
+                <ul class="newlist">
+                    <li className="newsBlock" key={items.title} >
+                        <h2 className="title"><Link to={{pathname:items.link}} target="_blank">{items.title}</Link></h2>
+                        <p className="author-publisher">Author: {items.author} Publisher: {items.publisher}</p>
+                    </li>
+                </ul>
             )
         });
 
