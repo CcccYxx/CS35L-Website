@@ -3,29 +3,42 @@ import { MenuItems } from "./MenuItems";
 import './NavBar.css';
 
 class NavBar extends Component{
-    constructor(props){
-        super(props)
-        this.state = {
-            isLogedIn: false //fetch data from backend to set this state accordingly
-        }
-    }
     render() {
-        return(
-            <nav className="NavBarItems">
-                <h1 className="app-logo"> <a href='/' className="site-name">Game-Website</a> </h1>
-                <ul className="nav-menu">
-                    {MenuItems.map((item, index) => {
-                        return (
-                            <li key={index}>
-                                <a className={this.state.isLogedIn ?  (item.label === 'Sign in' ? "nav-links-noshow" : "nav-links"): item.cName} href={item.url}>
-                                   {item.label}
-                                </a>
-                            </li>
-                        )
-                    })}
-                </ul>
-            </nav>
-        );
+        if(sessionStorage.getItem("isloggedin")){
+            return(
+                <nav className="NavBarItems">
+                    <h1 className="app-logo"> <a href='/' className="site-name">Game-Website</a> </h1>
+                    <ul className="nav-menu">
+                        {MenuItems.map((item, index) => {
+                            return (
+                                <li key={index}>
+                                    <a className={item.label === 'Sign in' ? "nav-links-noshow" : item.cName} href={item.url}>
+                                    {item.label}
+                                    </a>
+                                </li>
+                            )
+                        })}
+                    </ul>
+                </nav>
+            );
+        } else{
+            return(
+                <nav className="NavBarItems">
+                    <h1 className="app-logo"> <a href='/' className="site-name">Game-Website</a> </h1>
+                    <ul className="nav-menu">
+                        {MenuItems.map((item, index) => {
+                            return (
+                                <li key={index}>
+                                    <a className={item.label === 'Logout' || item.label === 'Profile' || item.label === 'Forum' ? "nav-links-noshow": item.cName} href={item.url}>
+                                    {item.label}
+                                    </a>
+                                </li>
+                            )
+                        })}
+                    </ul>
+                </nav>
+            );
+        }
     };
 };
 

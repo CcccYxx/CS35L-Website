@@ -1,0 +1,51 @@
+.formContainer{
+    font-family: 'Mulish', sans-serif;
+    width: 25vw;
+    margin-top: 4rem;
+    margin-right: 4rem;
+    padding: 1rem;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
+    border-radius: var(--border-radius);
+    background-color: white;
+}
+
+#formInput{
+    border-radius: 6px;
+    border-style: groove;
+}
+
+#message{
+    border-style: groove;
+    border-width: 2px;
+    font: inherit;
+    height: 20vh;
+    font-size: 1.2rem;
+}
+
+.title{
+    font-size: 2rem;
+}
+
+#submitButton{
+    margin-top: 20px;
+    margin-bottom: 15px;
+    border: none;
+    font-size: 1.2rem;
+    width: 67%;
+    position: relative;
+    transform: translate(22%);
+    padding: 0.5rem; 
+    color: white; 
+    background: var(--color-primary-dark);
+    border-radius: var(--border-radius);
+}
+
+#submitButton:hover{
+    cursor: pointer;
+    background: #5d5fff;
+}
+
+.uploadFile{
+    margin-left: 8vw;
+    font-family: sans-serif;
+}
