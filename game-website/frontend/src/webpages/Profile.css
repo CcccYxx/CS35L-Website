@@ -1,0 +1,37 @@
+
+.cols{
+    display: flex;
+    text-align: center;
+    flex-direction: row;
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    justify-content: space-around;
+    color: black;
+}
+
+.top{
+    border: 5px solid #DFD297;
+    column-width: 400px;
+    border-radius: 15px;
+}
+
+.image{
+    margin-top: 30px;
+}
+
+.Profile{
+    font-family: 'Courier New', Helvetica, sans-serif;
+    margin-left: 20px;
+    column-width: 400px;
+    border-radius: 15px;
+    border: 5px solid #DFD297;
+}
+
+.Friends{
+    font-family: 'Courier New', Helvetica, sans-serif;
+    margin-left: 20px;
+    column-width: 400px;
+    border-radius: 15px;
+    border: 5px solid #DFD297;
+}

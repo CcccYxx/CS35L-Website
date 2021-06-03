@@ -1,0 +1,26 @@
+.nameCard{
+    font-family: 'Mulish', sans-serif;
+    width: 25vw;
+    margin: auto;
+    margin: 4rem; 
+    padding: 1rem;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
+    border-radius: var(--border-radius);
+    background-color: white;
+    display: flex;
+}
+
+.nameCardRight{
+    overflow: auto;
+    margin-left: 40px;
+    margin-top: 8%;
+}
+
+.nameCardLeft{
+    min-width: 200px;
+    overflow: auto;
+}
+
+#nameCardID{
+    font-size: 10pt;
+}
