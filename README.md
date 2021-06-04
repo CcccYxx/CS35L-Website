@@ -19,6 +19,7 @@ notify them of news, and create friendships that can reach across borders
 <i>Note: Before login, the Profile and Forum tab of the Navbar are hidden.
 You need to login before you can use these features.</i>
 
+## How to Use
 ### Home page
 This is the starting point of our app: 
 On the Home page, you can navigate to other page through the top Navbar
@@ -28,10 +29,12 @@ The search result will be displayed as columns of posts cards or users' name car
 ### News page
 ### Login/Signup page
 ### Forum page
-This page display the posts that registered users made.
+This page displays the posts that registered users made.
 In this page, you can make a post via submission form on the right. 
 (The attachment picture is optional, but other fields are required)
-You can also like and delete other user's post 
+You can also like and delete other user's post as you wish.
+There is no restriction on that because we believe our App serves the user, and
+our users have the freedom to decide what they want to see.
 ### Profile page
 ## Setup 
 Go to game-website folder
