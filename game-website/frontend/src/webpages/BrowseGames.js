@@ -8,7 +8,7 @@ class BrowseGames extends React.Component {
 	super(props);
 	this.state =
 	{
-	    constraints: 'fields name, summary, cover, rating, url, first_release_date; limit 10; where platforms = 6 & cover != null & rating != null;',
+	    constraints: 'fields name, summary, cover, rating, url, first_release_date; limit 10; where platforms = 6 & cover != null & rating != null; sort rating desc;',
             data: [],
             coverURLs: []
         }
@@ -20,7 +20,13 @@ class BrowseGames extends React.Component {
         { value: '9', label: 'PS3' },
         { value: '48', label: 'PS4' },
         { value: '12', label: 'XBox 360' },
-        { value: '49', label: 'XBox One' }
+          { value: '49', label: 'XBox One' },
+	  { value: '130', label: 'Nintendo Switch' },
+        { value: '59', label: 'Atari 2600' },
+        { value: '39', label: 'iOS' },
+        { value: '5', label: 'Wii' },
+        { value: '20', label: 'Nintendo DS' },
+        { value: '19', label: 'SNES' },
       ]
       return (
         <div>
@@ -32,7 +38,7 @@ class BrowseGames extends React.Component {
             options={options}
             onChange={(e) => {
               this.setState({
-                constraints: 'fields name, summary, cover, rating, url, first_release_date; limit 10; where platforms = ' + e.value + ' & cover != null & rating != null;'
+                constraints: 'fields name, summary, cover, rating, url, first_release_date; limit 10; where platforms = ' + e.value + ' & cover != null & rating != null; sort rating desc;'
               });
               this.componentDidMount();
             }}
