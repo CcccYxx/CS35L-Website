@@ -46,6 +46,10 @@ On the Home page, you can navigate to other page through the top Navbar
 You can also do a search for the registered users and posts. 
 The search result will be displayed as columns of posts cards or users' name cards.
 ### Browse Games page
+After you have access to the proxy
+Then you can select a platfrom and a sub-list of the
+games available on that platform will be fetched and 
+displayed on the website
 ### News page
 ### Login/Signup page
 To see the Forum and Profile page, make an account by clicking the create account link
