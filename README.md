@@ -1,10 +1,37 @@
 # CS35L-Website
 ## Introduction
+<b>Our Game-Website App is an integrated platform for gamers:</b>
+
+Thanks to quarantine a lot of people have been spending a lot of time inside, 
+and a portion of those people have turned to video games for entertainment. 
+The goal of this project is to connect people who have found similar interests in gaming, 
+notify them of news, and create friendships that can reach across borders 
+
+<b>Our app allows you to:</b>
+- Signup/Login to access more features on our website
+- Edit profile to reflect your own gaming preferences
+- Add friends of similar interests
+- Make a posts about your favourite games (or whatever you want)
+- Search posts or users that are relevant 
+- Browse games from different platforms
+- Read trending news of popular games
+
+<i>Note: Before login, the Profile and Forum tab of the Navbar are hidden.
+You need to login before you can use these features.</i>
+
 ### Home page
+This is the starting point of our app: 
+On the Home page, you can navigate to other page through the top Navbar
+You can also do a search for the registered users and posts. 
+The search result will be displayed as columns of posts cards or users' name cards.
 ### Browse Games page
 ### News page
 ### Login/Signup page
 ### Forum page
+This page display the posts that registered users made.
+In this page, you can make a post via submission form on the right. 
+(The attachment picture is optional, but other fields are required)
+You can also like and delete other user's post 
 ### Profile page
 ## Setup 
 Go to game-website folder
