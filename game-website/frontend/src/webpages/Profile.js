@@ -39,7 +39,12 @@ class Profile extends Component{
                 .then(({ data}) => this.setState(update(this.state, {
                     Friends: {
                         [i]: {
-                            $set: data
+                            $set: {
+                                Games: data.Games,
+                                image: data.image,
+                                Email: data.Email,
+                                bio: data.bio
+                            }
                         }
                     }
                 })))
@@ -74,7 +79,7 @@ class Profile extends Component{
             .then(({data}) => this.setState({people: data}))
         setTimeout(function() { //Start the timer
             this.setState({render: true}) //After 1 second, set render to true
-        }.bind(this), 600)
+        }.bind(this), 2000)
     }
 
     render() {
