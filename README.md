@@ -10,7 +10,7 @@
 Go to game-website folder
 Go to backend folder and run the following commands:\
 `npm install`\
-`npm start`
+`npm start`\
 Go to frontend folder and run the following commands:\
 `npm install`\
 `npm start`\
