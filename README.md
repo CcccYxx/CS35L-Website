@@ -51,6 +51,8 @@ Then you can select a platfrom and a sub-list of the
 games available on that platform will be fetched and 
 displayed on the website
 ### News page
+News page display news related to gamers and technologies, click on any of the links 
+to visit the actual news page.
 ### Login/Signup page
 To see the Forum and Profile page, make an account by clicking the create account link
 under the login bar. Then login with your credentials. You should now be able to 
@@ -63,6 +65,8 @@ You can also like and delete other user's post as you wish.
 There is no restriction on that because we believe our App serves the user, and
 our users have the freedom to decide what they want to see.
 ### Profile page
+This is the page where you can view and edit your profile. You can edit your profile picture,
+you can add your favorite games, you can add a short bio, and you can add friends by email as well. 
 ## References & Special Thanks
 - The design and implementation of NavBar was inspired from [this tutorial](https://youtu.be/fL8cFqhTHwA)
 - The visual layout of forum page was inspired by [this tutorial](https://youtu.be/ngc9gnGgUdA)
