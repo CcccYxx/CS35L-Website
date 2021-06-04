@@ -38,8 +38,6 @@ cd frontend
 npm install
 npm start
 ```
-Before browsing games, please request a temporary access to the proxy\
-https://cors-anywhere.herokuapp.com/corsdemo
 ## How to Use
 ### Home page
 This is the starting point of our app: 
