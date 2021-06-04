@@ -27,7 +27,7 @@ cd game-website
 ```
 Then go to backend directory and run the following commands:
 ```bash
-cd game-website
+cd backend
 npm install
 npm start
 ```
