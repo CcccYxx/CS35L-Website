@@ -12,13 +12,12 @@ const uri = "mongodb+srv://Gamewebsite:WqvWDOvAEHUPfevX@cluster0.h0txi.mongodb.n
 // import postRoutes from './posts';
 const NewsAPI = require('newsapi');
 const newsapi = new NewsAPI('7b0f61af707f4a5cadb73a86aa2a2864');
-
+//const igdb = require('igdb-api-node');
+//const fetch = require('node-fetch');
+const apicalypse = require('apicalypse');
 //move token to .env file
 const secret = "website-secret-string"
-
-//getting around cors
-//const cors = require("cors");
-//app.use(cors());
+const axios = require('axios');
 
 //Middleware
 app.use(express.urlencoded({ extended: false })); //parse URL-encoded bodies
@@ -283,13 +282,66 @@ app.get('/news_api', function (req, res) {
         console.log(response);
 	res.send(response);
 	return;
-	/*
-    {
-      status: "ok",
-      articles: [...]
-    }
-  */
     })
+})
+
+app.options('/*', function (req, res) {
+    console.log("OPTIONS");
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Methods", "*");
+    res.header("Access-Control-Allow-Headers", "*");
+    res.send();
+    res.status(200);
+});
+
+app.get('/get_token', function (req, res) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "*");
+    const tokenAddress = 'https://id.twitch.tv/oauth2/token?client_id=qs2mp7bzre7yc6nbltzqhjzdjia4qz&client_secret=x21nh5m6aq45u5znk3bm9oxj6re7gp&grant_type=client_credentials';
+    console.log("get_token function");
+    return axios.post(tokenAddress, {})
+	.then(response => res.send(response.data.access_token));
+});
+
+app.post('/browse_database', function (req, res) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "*");
+    console.log(req.body);
+    console.log("BEFORE GET_TOKEN CALLED");
+    const token = req.body.token;
+    console.log(token);
+    console.log("AFTER");
+    const bearer = 'Bearer ' + token;          // Use this instead to get a new token every time
+    const authenticationInfo = {
+        'Client-ID': 'qs2mp7bzre7yc6nbltzqhjzdjia4qz',
+        'Authorization': bearer
+    };
+    const dataAddress = 'https://api.igdb.com/v4/games';
+    axios({
+      url: dataAddress,
+      method: 'POST',
+      headers: {
+          'Accept': 'application/json',
+          'Client-ID': 'qs2mp7bzre7yc6nbltzqhjzdjia4qz',
+          'Authorization': bearer,
+      },
+      data: req.body.query
+    })
+    .then(response2 => {
+        //console.log(response2.data);
+	res.status(200)
+	res.send(response2.data);
+	//return response2.data;
+    })
+    .catch(err => {
+	res.status(500);
+	res.send("FAILURE");
+	//console.error(err);
+    });
+
+    //console.log(response2);
+    //res.send();
+	 
 })
 
 app.listen(8080, function() {
