@@ -19,6 +19,16 @@ notify them of news, and create friendships that can reach across borders
 <i>Note: Before login, the Profile and Forum tab of the Navbar are hidden.
 You need to login before you can use these features.</i>
 
+## Setup 
+Go to game-website folder
+Go to backend folder and run the following commands:\
+`npm install`\
+`npm start`\
+Go to frontend folder and run the following commands:\
+`npm install`\
+`npm start`\
+Before browsing games, please request a temporary access to the proxy\
+https://github.com/QxLyds/CS35L-Website.git
 ## How to Use
 ### Home page
 This is the starting point of our app: 
@@ -36,16 +46,6 @@ You can also like and delete other user's post as you wish.
 There is no restriction on that because we believe our App serves the user, and
 our users have the freedom to decide what they want to see.
 ### Profile page
-## Setup 
-Go to game-website folder
-Go to backend folder and run the following commands:\
-`npm install`\
-`npm start`\
-Go to frontend folder and run the following commands:\
-`npm install`\
-`npm start`\
-Before browsing games, please request a temporary access to the proxy\
-https://github.com/QxLyds/CS35L-Website.git
 ## References & Special Thanks
 - The design and implementation of NavBar was inspired from [this tutorial](https://youtu.be/fL8cFqhTHwA)
 - The visual layout of forum page was inspired by [this tutorial](https://youtu.be/ngc9gnGgUdA)
