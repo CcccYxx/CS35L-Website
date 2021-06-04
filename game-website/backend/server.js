@@ -298,7 +298,6 @@ app.get('/get_token', function (req, res) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "*");
     const tokenAddress = 'https://id.twitch.tv/oauth2/token?client_id=qs2mp7bzre7yc6nbltzqhjzdjia4qz&client_secret=x21nh5m6aq45u5znk3bm9oxj6re7gp&grant_type=client_credentials';
-    console.log("get_token function");
     return axios.post(tokenAddress, {})
 	.then(response => res.send(response.data.access_token));
 });
@@ -306,12 +305,7 @@ app.get('/get_token', function (req, res) {
 app.post('/browse_database', function (req, res) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "*");
-    console.log(req.body);
-    console.log("BEFORE GET_TOKEN CALLED");
-    const token = req.body.token;
-    console.log(token);
-    console.log("AFTER");
-    const bearer = 'Bearer ' + token;          // Use this instead to get a new token every time
+    const bearer = 'Bearer ' + req.body.token;          // Use this instead to get a new token every time
     const authenticationInfo = {
         'Client-ID': 'qs2mp7bzre7yc6nbltzqhjzdjia4qz',
         'Authorization': bearer
@@ -328,21 +322,43 @@ app.post('/browse_database', function (req, res) {
       data: req.body.query
     })
     .then(response2 => {
-        //console.log(response2.data);
 	res.status(200)
 	res.send(response2.data);
-	//return response2.data;
     })
     .catch(err => {
 	res.status(500);
 	res.send("FAILURE");
-	//console.error(err);
     });
-
-    //console.log(response2);
-    //res.send();
-	 
 })
+
+app.post('/get_covers', function (req, res) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "*");
+    const bearer = 'Bearer ' + req.body.token;          // Use this instead to get a new token every time
+    const authenticationInfo = {
+        'Client-ID': 'qs2mp7bzre7yc6nbltzqhjzdjia4qz',
+        'Authorization': bearer
+    };
+    const dataAddress = 'https://api.igdb.com/v4/covers';
+    axios({
+      url: dataAddress,
+      method: 'POST',
+      headers: {
+          'Accept': 'application/json',
+          'Client-ID': 'qs2mp7bzre7yc6nbltzqhjzdjia4qz',
+          'Authorization': bearer,
+      },
+      data: req.body.query
+    })
+    .then(response => {
+	res.status(200)
+	res.send(response.data);
+    })
+    .catch(err => {
+	res.status(500);
+	res.send("FAILURE");
+    });
+});
 
 app.listen(8080, function() {
     console.log("Server is running on Port: 8080");

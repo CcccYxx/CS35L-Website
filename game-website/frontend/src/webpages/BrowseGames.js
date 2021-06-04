@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
 import './BrowseGames.css';
 import Select from 'react-select';
+const axios = require('axios');
 
 class BrowseGames extends React.Component {
-    constructor() {
-      super();
-      this.state = {constraints: 'fields name, summary, cover, rating, url, first_release_date; limit 10; where platforms = 6 & cover != null & rating != null;',
-                    data: [],
-                    coverURLs: []
-      }
+    constructor(props) {
+	super(props);
+	this.state =
+	{
+	    constraints: 'fields name, summary, cover, rating, url, first_release_date; limit 10; where platforms = 6 & cover != null & rating != null;',
+            data: [],
+            coverURLs: []
+        }
     }
 
     displayPlatformsSelect() {
@@ -52,7 +55,7 @@ class BrowseGames extends React.Component {
             {gameData.map((item) => {
               name = item.name;
               summary = item.summary;
-              coverURL = item.coverURL;
+	      coverURL = item.coverURL;
               rating = item.rating;
               url = item.url;
               date = item.first_release_date;
@@ -64,7 +67,7 @@ class BrowseGames extends React.Component {
                   <table>
                     <tr>
                       <td>
-                        <img className="game_image" src={coverURL} height='300' width='300'/>                  
+                        <img className="game_image" src={coverURL} height='180' width='180'/>                  
                       </td>
                       <td>
                         <h2>{name}</h2>
@@ -86,26 +89,12 @@ class BrowseGames extends React.Component {
     }
 
     async componentDidMount() {
-      const tokenAddress = 'https://id.twitch.tv/oauth2/token?client_id=xmj854p8ubogtijgavxucipsk4l0ww&client_secret=qneu0v93g7ui3jved22fpebwgtb0xh&grant_type=client_credentials';
-      const response1 = await fetch(tokenAddress, {method: 'POST'});
-      const obj1 = await response1.json();
-      const token = obj1.access_token;
-  
-      const bearer = 'Bearer ' + token;          // Use this instead to get a new token every time
-      const authenticationInfo = {
-        'Client-ID': 'xmj854p8ubogtijgavxucipsk4l0ww',
-        'Authorization': bearer
-      };
-
-      const dataAddress = 'https://cors-anywhere.herokuapp.com/https://api.igdb.com/v4/games'; // Create a proxy to get around CORS
-      const response2 = await fetch(dataAddress, {
-        method: 'POST',
-        headers: authenticationInfo,
-        body: this.state.constraints,
-      });
-      const obj2 = await response2.json();
-      this.setState({data: obj2});
-
+	console.log(this.state.constraints);
+	const token_id = await axios.get('http://localhost:8080/get_token');
+	console.log(token_id.data);
+	const res = await axios.post('http://localhost:8080/browse_database', {query: this.state.constraints, token: token_id.data});
+	console.log(res.data);
+	this.setState({data: res.data});
       const coverAddress = 'https://cors-anywhere.herokuapp.com/https://api.igdb.com/v4/covers';
       //Get an array of cover ids of the games
       var coverIDs = [];
@@ -119,14 +108,9 @@ class BrowseGames extends React.Component {
         coverConstraints += coverIDs[i] + ', ';
       }
       coverConstraints += coverIDs[coverIDs.length - 1] + ')';
-
-      const response3 = await fetch(coverAddress, {
-        method: 'POST',
-        headers: authenticationInfo,
-        body: 'fields url; where id = ' + coverConstraints + ';'
-      });
-      const obj3 = await response3.json();
-      this.setState({coverURLs: obj3})
+      const res2 = await axios.post('http://localhost:8080/get_covers', {query: 'fields url; where id = ' + coverConstraints + ';', token: token_id.data});
+      
+      this.setState({coverURLs: res2.data})
 
       const gameData = this.state.data;
       const coverData = this.state.coverURLs;
@@ -141,15 +125,15 @@ class BrowseGames extends React.Component {
 
       console.log(this.state.data)
     }
-    
+  
     render() {
       return (
         <div>
             {this.displayPlatformsSelect()}
             {this.displayData()}
         </div>
-      );
+      )
     }
-  }
-
+  
+}
 export default BrowseGames;
