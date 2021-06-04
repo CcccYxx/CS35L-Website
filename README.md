@@ -20,8 +20,8 @@ notify them of news, and create friendships that can reach across borders
 You need to login before you can use these features.</i>
 
 ## Installation
-To run this project, follow these instructions:
-First install newest version of [Node.js](https://nodejs.org/en/)
+To run this project, follow these instructions:\
+First install newest version of [Node.js](https://nodejs.org/en/)\
 Go to game-website folder
 ```bash
 cd game-website
