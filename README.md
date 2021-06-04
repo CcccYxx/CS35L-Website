@@ -19,6 +19,26 @@ notify them of news, and create friendships that can reach across borders
 <i>Note: Before login, the Profile and Forum tab of the Navbar are hidden.
 You need to login before you can use these features.</i>
 
+## Installation
+To run this project, follow these instructions:
+Go to game-website folder
+```bash
+cd game-website
+```
+Then go to backend directory and run the following commands:
+```bash
+cd backend
+npm install
+npm start
+```
+Then from game-website, change to frontend directory and run the following commands:
+```bash
+cd frontend
+npm install
+npm start
+```
+Before browsing games, please request a temporary access to the proxy\
+https://cors-anywhere.herokuapp.com/corsdemo
 ## How to Use
 ### Home page
 This is the starting point of our app: 
@@ -28,6 +48,9 @@ The search result will be displayed as columns of posts cards or users' name car
 ### Browse Games page
 ### News page
 ### Login/Signup page
+To see the Forum and Profile page, make an account by clicking the create account link
+under the login bar. Then login with your credentials. You should now be able to 
+use the Forum page and create a profile. 
 ### Forum page
 This page displays the posts that registered users made.
 In this page, you can make a post via submission form on the right. 
@@ -36,16 +59,6 @@ You can also like and delete other user's post as you wish.
 There is no restriction on that because we believe our App serves the user, and
 our users have the freedom to decide what they want to see.
 ### Profile page
-## Setup 
-Go to game-website folder
-Go to backend folder and run the following commands:\
-`npm install`\
-`npm start`\
-Go to frontend folder and run the following commands:\
-`npm install`\
-`npm start`\
-Before browsing games, please request a temporary access to the proxy\
-https://github.com/QxLyds/CS35L-Website.git
 ## References & Special Thanks
 - The design and implementation of NavBar was inspired from [this tutorial](https://youtu.be/fL8cFqhTHwA)
 - The visual layout of forum page was inspired by [this tutorial](https://youtu.be/ngc9gnGgUdA)
@@ -55,3 +68,4 @@ https://github.com/QxLyds/CS35L-Website.git
 - The search bar icon was downloaded from [this link](https://commons.wikimedia.org/wiki/File:Vector_search_icon.png#/media/File:Vector_search_icon.svg)
 - The like button design was downloaded from the website: [flaticon](https://www.flaticon.com/free-icon/like_633759)
 - The delete button design was downloaded from the website: [svgrepo](https://www.svgrepo.com/svg/79440/delete-button)
+- The user login and registration design is derived from [this](https://faizanv.medium.com/authentication-for-your-react-and-express-application-w-json-web-tokens-923515826e0) and [this](https://www.digitalocean.com/community/tutorials/how-to-add-login-authentication-to-react-applications) tutorial
