@@ -9,12 +9,8 @@ const cookieParser = require('cookie-parser');
 const withAuth = require('./middleware/middleware');
 const { request } = require("express");
 const uri = "mongodb+srv://Gamewebsite:WqvWDOvAEHUPfevX@cluster0.h0txi.mongodb.net/UserInformation?retryWrites=true&w=majority";
-// import postRoutes from './posts';
 const NewsAPI = require('newsapi');
 const newsapi = new NewsAPI('7b0f61af707f4a5cadb73a86aa2a2864');
-//const igdb = require('igdb-api-node');
-//const fetch = require('node-fetch');
-const apicalypse = require('apicalypse');
 //move token to .env file
 const secret = "website-secret-string"
 const axios = require('axios');
@@ -23,8 +19,6 @@ const axios = require('axios');
 app.use(express.urlencoded({ extended: false })); //parse URL-encoded bodies
 app.use(express.json({limit:'50mb'}));//parse JSON bodies
 app.use(cookieParser());
-// app.use('/posts', postRoutes);
-
 mongoose.connect(uri, 
     { useUnifiedTopology: true, useNewUrlParser: true},
     function(err){
