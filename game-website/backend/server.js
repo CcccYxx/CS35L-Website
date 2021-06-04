@@ -10,9 +10,15 @@ const withAuth = require('./middleware/middleware');
 const { request } = require("express");
 const uri = "mongodb+srv://Gamewebsite:WqvWDOvAEHUPfevX@cluster0.h0txi.mongodb.net/UserInformation?retryWrites=true&w=majority";
 // import postRoutes from './posts';
+const NewsAPI = require('newsapi');
+const newsapi = new NewsAPI('7b0f61af707f4a5cadb73a86aa2a2864');
 
 //move token to .env file
 const secret = "website-secret-string"
+
+//getting around cors
+//const cors = require("cors");
+//app.use(cors());
 
 //Middleware
 app.use(express.urlencoded({ extended: false })); //parse URL-encoded bodies
@@ -266,6 +272,26 @@ app.get('/search/post/:searchString', async (req, res) => {
     }
 })
 
+app.get('/news_api', function (req, res) {
+    res.header("Access-Control-Allow-Origin", "*");
+    newsapi.v2.everything({
+        q: 'gaming',
+        from: '2021-05-06',
+        ln: 'en',
+	sortBy: "popularity"
+    }).then(response => {
+        console.log(response);
+	res.send(response);
+	return;
+	/*
+    {
+      status: "ok",
+      articles: [...]
+    }
+  */
+    })
+})
+
 app.listen(8080, function() {
     console.log("Server is running on Port: 8080");
-  });
+});
