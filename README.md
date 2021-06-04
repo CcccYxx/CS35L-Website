@@ -28,7 +28,7 @@ Go to frontend folder and run the following commands:\
 `npm install`\
 `npm start`\
 Before browsing games, please request a temporary access to the proxy\
-https://github.com/QxLyds/CS35L-Website.git
+https://cors-anywhere.herokuapp.com/corsdemo
 ## How to Use
 ### Home page
 This is the starting point of our app: 
