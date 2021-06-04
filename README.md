@@ -21,6 +21,7 @@ You need to login before you can use these features.</i>
 
 ## Installation
 To run this project, follow these instructions:
+First install newest version of [Node.js](https://nodejs.org/en/)
 Go to game-website folder
 ```bash
 cd game-website
