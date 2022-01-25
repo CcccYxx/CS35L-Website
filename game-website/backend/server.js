@@ -13,13 +13,12 @@ const uri = "mongodb://CccYxx:-3s%23K3%40QBZJc3Xr@cluster0-shard-00-00.jblbs.mon
 
 //move token to .env file
 const secret = "website-secret-string"
+const axios = require('axios');
 
 //Middleware
 app.use(express.urlencoded({ extended: false })); //parse URL-encoded bodies
 app.use(express.json({limit:'50mb'}));//parse JSON bodies
 app.use(cookieParser());
-// app.use('/posts', postRoutes);
-
 mongoose.connect(uri, 
     { useUnifiedTopology: true, useNewUrlParser: true},
     function(err){
@@ -266,6 +265,95 @@ app.get('/search/post/:searchString', async (req, res) => {
     }
 })
 
+app.get('/news_api', function (req, res) {
+    res.header("Access-Control-Allow-Origin", "*");
+    newsapi.v2.everything({
+        q: 'gaming',
+        from: '2021-05-06',
+        ln: 'en',
+	sortBy: "popularity"
+    }).then(response => {
+        console.log(response);
+	res.send(response);
+	return;
+    })
+})
+
+app.options('/*', function (req, res) {
+    console.log("OPTIONS");
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Methods", "*");
+    res.header("Access-Control-Allow-Headers", "*");
+    res.send();
+    res.status(200);
+});
+
+app.get('/get_token', function (req, res) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "*");
+    const tokenAddress = 'https://id.twitch.tv/oauth2/token?client_id=qs2mp7bzre7yc6nbltzqhjzdjia4qz&client_secret=x21nh5m6aq45u5znk3bm9oxj6re7gp&grant_type=client_credentials';
+    return axios.post(tokenAddress, {})
+	.then(response => res.send(response.data.access_token));
+});
+
+app.post('/browse_database', function (req, res) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "*");
+    const bearer = 'Bearer ' + req.body.token;          // Use this instead to get a new token every time
+    const authenticationInfo = {
+        'Client-ID': 'qs2mp7bzre7yc6nbltzqhjzdjia4qz',
+        'Authorization': bearer
+    };
+    const dataAddress = 'https://api.igdb.com/v4/games';
+    axios({
+      url: dataAddress,
+      method: 'POST',
+      headers: {
+          'Accept': 'application/json',
+          'Client-ID': 'qs2mp7bzre7yc6nbltzqhjzdjia4qz',
+          'Authorization': bearer,
+      },
+      data: req.body.query
+    })
+    .then(response2 => {
+	res.status(200)
+	res.send(response2.data);
+    })
+    .catch(err => {
+	res.status(500);
+	res.send("FAILURE");
+    });
+})
+
+app.post('/get_covers', function (req, res) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "*");
+    const bearer = 'Bearer ' + req.body.token;          // Use this instead to get a new token every time
+    const authenticationInfo = {
+        'Client-ID': 'qs2mp7bzre7yc6nbltzqhjzdjia4qz',
+        'Authorization': bearer
+    };
+    const dataAddress = 'https://api.igdb.com/v4/covers';
+    axios({
+      url: dataAddress,
+      method: 'POST',
+      headers: {
+          'Accept': 'application/json',
+          'Client-ID': 'qs2mp7bzre7yc6nbltzqhjzdjia4qz',
+          'Authorization': bearer,
+      },
+      data: req.body.query
+    })
+    .then(response => {
+	res.status(200)
+	res.send(response.data);
+    })
+    .catch(err => {
+	res.status(500);
+	res.send("FAILURE");
+    });
+});
+
 app.listen(8080, function() {
     console.log("Server is running on Port: 8080");
-  });
+});
