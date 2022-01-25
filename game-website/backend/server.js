@@ -8,7 +8,7 @@ const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
 const withAuth = require('./middleware/middleware');
 const { request } = require("express");
-const uri = "mongodb+srv://Gamewebsite:WqvWDOvAEHUPfevX@cluster0.h0txi.mongodb.net/UserInformation?retryWrites=true&w=majority";
+const uri = "mongodb://CccYxx:-3s%23K3%40QBZJc3Xr@cluster0-shard-00-00.jblbs.mongodb.net:27017,cluster0-shard-00-01.jblbs.mongodb.net:27017,cluster0-shard-00-02.jblbs.mongodb.net:27017/myFirstDatabase?ssl=true&replicaSet=atlas-m2oghn-shard-0&authSource=admin&retryWrites=true&w=majority";
 // import postRoutes from './posts';
 
 //move token to .env file
