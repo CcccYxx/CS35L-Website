@@ -7,13 +7,13 @@ export const MenuItems = [
 
     {
         label: 'Browse Games',
-        url: '/browse-games',
+        url: '/',
         cName: 'nav-links'
     },
 
     {
         label: 'News',
-        url: '/news',
+        url: '/',
         cName: 'nav-links'
     },
 
